@@ -55,8 +55,8 @@ h6 {
 
 #top-bar {
   background-color: rgba(194, 218, 165, 0.262745098);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
   position: fixed;
   top: 0;
   left: 0;
@@ -161,8 +161,8 @@ dl {
 }
 
 .btn:hover {
-  background-color: #2d2d2d;
-  border-color: #2d2d2d;
+  background-color: #8cd00c !important;
+  border-color: #8cd00c !important;
 }
 
 #cta {
