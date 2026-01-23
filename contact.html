@@ -235,11 +235,11 @@
     button.innerText = "Invio...";
     button.disabled = true;
 
-    // 1️⃣ INVIO A TE
+    
     emailjs.sendForm("service_7z1hpsi", "template_045n0hc", this)
       .then(() => {
 
-        // 2️⃣ INVIO AUTOMATICO ALL’UTENTE
+       
         emailjs.sendForm("service_7z1hpsi", "template_ylahpzx", this);
 
         this.reset();
