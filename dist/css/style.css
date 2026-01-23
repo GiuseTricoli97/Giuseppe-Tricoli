@@ -385,8 +385,8 @@ footer ul {
   line-height: 50px;
   border-radius: 50%;
   text-align: center;
-  background: #e1e0e0;
-  color: hsl(222, 8%, 46%);
+  background: #eaf4d8;
+  color: #8cd00c;
   font-size: 20px;
   transition: all 0.3s;
 }
