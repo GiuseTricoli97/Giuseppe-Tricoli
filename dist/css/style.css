@@ -3,8 +3,8 @@
    1. Font e variabili
    2. Base
    3. Header e menu
-   4. Pulsanti e link
-   5. Home: hero, chi sono, CTA
+   4. Pulsanti
+   5. Intro, chi sono, CTA
    6. Card e lavori
    7. Loghi clienti
    8. Footer
@@ -36,14 +36,15 @@
   --font-titoli: "Space Grotesk", sans-serif;
   --font-testo: "Inter", sans-serif;
 
+  /* Colore d'accento: si cambia solo qui */
+  --accento: #69b4c2;
+  --accento-chiaro: color-mix(in srgb, var(--accento) 15%, white);
+
   --nero: #121212;
-  --verde: #69b4c2;
-  --verde-chiaro: #eaf4d8;
-  --grigio-chiaro: #e1e0e0;
-  --grigio-testo: hsl(222, 8%, 46%);
-  --grigio-meta: #666;
+  --grigio-chiaro: #e8e7e4;
+  --grigio-testo: #5f6573;
+  --grigio-meta: var(--grigio-testo);
   --sfondo: #f9f9f7;
-  --menu: rgba(194, 218, 165, 0.26);
 
   --raggio: 25px;
   --ombra: 0 8px 24px hsla(220, 15%, 12%, 0.05);
@@ -51,13 +52,35 @@
 }
 
 
+@property --accento {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #69b4c2;
+}
+
+html {
+  transition: --accento 0.5s ease;
+}
+
+/* Temi colore: si alternano cliccando l'asterisco.
+   Cambia solo l'accento: sfondo, testi e grigi restano fissi.
+   Contrasto del testo nero su ogni accento: tra 7.7:1 e 10:1 (WCAG AA).
+   L'accento si usa SOLO come sfondo, mai come colore del testo. */
+html[data-tema="carta"]  { --accento: #f0b429; }
+html[data-tema="rosa"]   { --accento: #f28b9b; }
+html[data-tema="salvia"] { --accento: #9fcc5a; }
+html[data-tema="lilla"]  { --accento: #a99bf0; }
+
+
 /* 2. Base
    ---------------------------------------------------------- */
 
 body {
   background-color: var(--sfondo);
+  color: var(--nero);
   font-family: var(--font-titoli) !important;
   padding-top: 80px;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1,
@@ -67,7 +90,67 @@ h2 {
   letter-spacing: -0.04em;
   line-height: 1em;
 }
+.intro-sub {
+  max-width: 44ch;
+  margin: 1.75rem auto 0;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--grigio-testo);
+}
 
+/* Pagine di solo testo (privacy) */
+.pagina-testo {
+  max-width: 70ch;
+}
+
+.pagina-testo h1 {
+  margin-bottom: 0.5rem;
+}
+
+.pagina-testo h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.pagina-testo h3 {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.pagina-testo p,
+.pagina-testo li {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.pagina-testo a {
+  font-size: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accento);
+  text-underline-offset: 0.2em;
+}
+
+.pagina-testo .aggiornamento {
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+}
+
+.pagina-testo .lista-testo {
+  display: block;
+  padding-left: 1.25rem !important;
+  text-align: left;
+  list-style: disc;
+}
+
+.pagina-testo .lista-testo li {
+  display: list-item;
+  margin-bottom: 0.5rem;
+  color: var(--grigio-testo);
+}
 p,
 a {
   font-family: var(--font-testo) !important;
@@ -90,13 +173,13 @@ h6 {
 
 mark {
   background: none;
-  box-shadow: inset 0 -0.4em 0 var(--verde);
+  box-shadow: inset 0 -0.4em 0 var(--accento);
   padding: 0 0.1em;
 }
 
 hr {
   border: none;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--grigio-chiaro);
   margin: 0.5rem 0 1rem;
 }
 
@@ -173,13 +256,14 @@ dl {
 .menu li a {
   padding: 1rem 0.75rem;
   font-weight: 500;
-  color: #000;
-  text-decoration: none;
-  transition: color 0.2s;
+  color: var(--nero);
+  text-decoration: underline 0.15em transparent;
+  text-underline-offset: 0.35em;
+  transition: text-decoration-color 0.2s;
 }
 
 .menu li a:hover {
-  color: var(--verde);
+  text-decoration-color: var(--accento);
 }
 
 #contact {
@@ -209,7 +293,7 @@ dl {
   left: 0;
   width: 100%;
   height: 3px;
-  background: #000;
+  background: var(--nero);
   transition: transform 0.3s ease, top 0.3s ease;
 }
 
@@ -217,20 +301,27 @@ dl {
 #hamburger::after  { top: 18px; }
 
 
-/* 4. Pulsanti e link
+/* 4. Pulsanti
    ---------------------------------------------------------- */
+
+button,
+.btn {
+  font-family: var(--font-testo) !important;
+}
 
 .btn {
   background-color: var(--nero);
   border-color: var(--nero);
+  color: var(--sfondo);
   border-radius: 999px;
   padding: 0.6rem 1.5rem;
   font-size: medium;
 }
 
 .btn:hover {
-  background-color: var(--verde) !important;
-  border-color: var(--verde) !important;
+  background-color: var(--accento) !important;
+  border-color: var(--accento) !important;
+  color: var(--nero) !important;
 }
 
 #cta {
@@ -239,53 +330,72 @@ dl {
   color: var(--nero);
 }
 
+/* Link-bottone senza sfondo (usato nelle pagine CV e contatti) */
 .cta {
   margin: 0;
   padding: 0;
   border-style: none;
-  background-color: var(--sfondo);
+  background-color: transparent;
   color: var(--nero);
   text-align: left;
 }
 
 
-/* 5. Home: hero, chi sono, CTA
+/* 5. Intro, chi sono, CTA
    ---------------------------------------------------------- */
 
-#heading-top {
-  padding: 0 6% 15% 0;
+/* Titolo di apertura */
+.intro-title {
+  max-width: 20ch;
+  margin: 0 auto;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-align: center;
+  text-wrap: balance;
 }
 
-#heading-top p {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+.intro-title mark {
+  position: relative;
+  isolation: isolate;
+  white-space: nowrap;
+  box-shadow: none;
+  text-decoration: none;
 }
 
-.hero-sub {
-  display: block;
-  margin-top: 0.4em;
-  font-size: 0.6em;
-  letter-spacing: -0.5pt;
-  line-height: 1.15;
+.intro-title mark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;   /* alza o abbassa la linea da qui */
+  height: 0.2em;
+  z-index: -1;
+  background: var(--accento);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: sottolinea 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.4s forwards;
 }
 
+@keyframes sottolinea {
+  to { transform: scaleX(1); }
+}
+
+/* Chi sono */
 #heading {
   padding: 0 6% 0 0;
 }
 
 #heading p {
   margin-top: 2rem;
-}
-
-#card-profile,
-#card-about {
-  background: var(--sfondo) !important;
-  border-style: hidden;
-  border-radius: var(--raggio);
+  margin-bottom: 2rem;
 }
 
 #card-about {
   margin-right: 15%;
+  background: var(--sfondo) !important;
+  border-style: hidden;
+  border-radius: var(--raggio);
   box-shadow: none !important;
 }
 
@@ -297,12 +407,34 @@ dl {
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
+/* CTA finale */
 #heading-cta {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 100vh;
+  text-align: center;
+}
+
+#heading-cta h2 {
+  font-size: clamp(3rem, 5.5vw, 4.5rem);
+  text-wrap: balance;
+}
+
+#heading-cta a {
+  font-family: inherit !important;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+#heading-cta a mark {
+  transition: box-shadow 0.35s ease;
+}
+
+#heading-cta a:hover mark,
+#heading-cta a:focus-visible mark {
+  box-shadow: inset 0 -1em 0 var(--accento);
 }
 
 
@@ -311,6 +443,7 @@ dl {
 
 .card {
   margin-top: 2rem;
+  background-color: var(--sfondo);
   border-style: hidden;
   border-radius: var(--raggio);
   box-shadow: var(--ombra);
@@ -321,7 +454,6 @@ dl {
 .card:hover {
   box-shadow: var(--ombra-hover);
   transform: translateY(-5px);
-  
 }
 
 .card-img-top {
@@ -342,7 +474,7 @@ dl {
   padding: 10px;
   border-radius: 40px;
   background-color: var(--grigio-chiaro);
-  color: #2d2d2d;
+  color: var(--nero);
   font-size: 9px;
   font-weight: 600;
 }
@@ -352,11 +484,6 @@ dl {
   font-weight: 500;
 }
 
-.card-text {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--grigio-testo);
-}
 .card-text {
   font-size: 0.8rem;
   font-weight: 400;
@@ -391,59 +518,6 @@ dl {
   object-fit: cover;
 }
 
-/* Toggle Grafica / Web */
-/* Tab Grafica / Web */
-/* Toggle Grafica / Web */
-#lavori .toggle-lavori {
-   position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  width: max-content;
-  max-width: 100%;
-   margin: 3rem auto 3rem;
-  padding: 4px;
-  border-radius: 999px;
-  background: var(--grigio-chiaro);
-}
-
-#lavori .toggle-lavori::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  width: calc(50% - 4px);
-  border-radius: 999px;
-  background: var(--verde);
-  transition: transform 0.3s ease;
-}
-
-#lavori .toggle-lavori:has(.nav-item:nth-child(2) .active)::before {
-  transform: translateX(100%);
-}
-
-#lavori .toggle-lavori .nav-item {
-  flex: 1 1 0;
-}
-
-#lavori .toggle-lavori .nav-link {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding: 0.55rem 1.25rem;
-  border-radius: 999px;
-  background: transparent !important;
-  color: var(--grigio-testo);
-  font-size: 0.85rem;
-  white-space: nowrap;
-  transition: color 0.3s ease;
-}
-
-#lavori .toggle-lavori .nav-link.active {
-  color: var(--nero);
-  font-weight: 500;
-}
-
 /* Seconda immagine al passaggio del mouse */
 .card-media {
   position: relative;
@@ -467,86 +541,162 @@ dl {
   }
 }
 
+/* Toggle Grafica / Web: due colonne sempre uguali */
+#lavori .toggle-lavori {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: max-content;
+  max-width: 100%;
+margin: 2rem auto 3rem;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--grigio-chiaro);
+}
+
+#lavori .toggle-lavori::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--accento);
+  transition: transform 0.3s ease;
+}
+
+#lavori .toggle-lavori:has(.nav-item:nth-child(2) .active)::before {
+  transform: translateX(100%);
+}
+
+#lavori .toggle-lavori .nav-item {
+  display: block;
+  min-width: 0;
+}
+
+#lavori .toggle-lavori .nav-link {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  background: transparent !important;
+  color: var(--grigio-testo);
+  font-size: 0.85rem;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+#lavori .toggle-lavori .nav-link.active {
+  color: var(--nero);
+  font-weight: 500;
+}
+
 
 /* 7. Loghi clienti
    ---------------------------------------------------------- */
 
+#clienti {
+  max-width: 1100px;
+  margin: 7rem auto;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--grigio-chiaro);
+  border-bottom: 1px solid var(--grigio-chiaro);
+}
+
+#clienti > h6 {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  color: var(--grigio-testo);
+}
+
 #clienti-griglia {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2rem 3rem;
-  align-items: center;
-  margin-top: 3rem;
-}
-
-.logo-cella {
-  height: 76px;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 2.5rem 3.5rem;
 }
 
+/* --s nell'HTML regola la scala di ogni singolo logo */
 .logo-cella img {
+  display: block;
+  height: calc(90px * var(--s, 1));
   width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 230px;
   object-fit: contain;
-  opacity: 0.6;
+  filter: grayscale(1);
+  opacity: 0.55;
   mix-blend-mode: multiply;
   transition: opacity 0.25s ease;
 }
 
-.logo-cella.largo img { max-height: 50%; }
-.logo-cella:hover img { opacity: 1; }
-#clienti {
-  margin-top: 6rem;
-  margin-bottom: 8rem;
+.logo-cella:hover img {
+  opacity: 1;
 }
+
 
 /* 8. Footer
    ---------------------------------------------------------- */
 
 #footer {
-  display: flex;
-  align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   border-style: solid;
   border-width: 1px 0;
   border-color: var(--grigio-chiaro);
 }
 
-footer div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+#footer h6 {
+  margin-bottom: 1.25rem;
+  color: var(--grigio-testo);
 }
 
-footer ul {
-  display: block;
-  text-align: left;
+#footer-brand,
+#navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 #logo-site {
-  width: 50%;
-  padding-bottom: 5%;
+  width: 190px;
+  max-width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+#footer-brand p {
+  margin-bottom: 0.5rem;
+}
+
+#navigation a {
+  display: block;
+  padding: 0.2rem 0;
 }
 
 #social {
+  display: flex;
+  flex-direction: column;
   align-items: end;
 }
 
 #social ul {
+  display: flex;
+  gap: 0.5rem;
+  width: auto;
   margin: 0;
-  padding-top: 7%;
-  padding-bottom: 7%;
+  padding: 0;
   list-style: none;
-  text-align: right;
 }
 
 #social ul li {
-  display: inline;
+  display: block;
   margin: 0;
 }
 
@@ -557,13 +707,14 @@ footer ul {
   line-height: 50px;
   border-radius: 50%;
   text-align: center;
-  background: var(--grigio-chiaro);
-  color: var(--verde);
+  background: var(--accento-chiaro);
+  color: var(--nero);
   font-size: 20px;
   transition: all 0.3s;
 }
 
 #social ul li a:hover {
+  background: var(--accento);
   transform: rotate(360deg);
 }
 
@@ -581,13 +732,12 @@ footer ul {
   background-color: var(--nero);
   color: var(--sfondo);
   font-size: 22px;
-  text-decoration: none;
   box-shadow: 0 8px 24px hsla(220, 15%, 12%, 0.15);
   transition: all 0.3s ease;
 }
 
 #scrollTopBtn:hover {
-  background-color: var(--verde);
+  background-color: var(--accento);
   color: var(--nero);
   transform: translateY(-5px);
 }
@@ -597,23 +747,106 @@ footer ul {
   left: 15px;
   bottom: 15px;
   z-index: 9999;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
 }
 
-#rotating-icon img {
-  width: 45px;
-  height: 45px;
-  opacity: 0.9;
-  animation: spin 4s linear infinite;
+[data-cambia-tema] {
+  cursor: pointer;
+}
+
+/* Cerchio con il colore del prossimo tema */
+#rotating-icon::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--prossimo, var(--accento));
+  transform: scale(0.6);
+  opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-#rotating-icon img:hover {
-  transform: scale(1.1);
+#rotating-icon:hover::before,
+#rotating-icon:focus-visible::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* --giro viene aumentato da tema.js a ogni clic */
+#rotating-icon img {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  transform: rotate(var(--giro, 0deg));
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#rotating-icon:hover img,
+#rotating-icon:focus-visible img {
+  transform: rotate(var(--giro, 0deg)) scale(0.88);
+}
+
+/* Etichetta "Cambia colori" */
+.tema-hint {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--nero);
+  color: var(--sfondo);
+  font-family: var(--font-testo);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-6px, -50%);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#rotating-icon:hover .tema-hint,
+#rotating-icon:focus-visible .tema-hint,
+#rotating-icon.mostra-hint .tema-hint {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* Colophon */
+#colophon {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+#colophon p {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--grigio-testo);
+}
+
+#colophon p:last-child {
+  max-width: 46ch;
+  text-align: right;
+}
+
+#colophon a {
+  font-size: inherit;
+  color: var(--nero);
+  text-decoration: underline;
+  text-decoration-color: var(--accento);
+  text-decoration-thickness: 0.15em;
+  text-underline-offset: 0.2em;
 }
 
 
@@ -626,14 +859,16 @@ footer ul {
 
 form .form-control {
   border-radius: 10px;
-  background-color: #f5f4f4;
+  background-color: var(--sfondo);
+  border-color: var(--grigio-chiaro);
+  color: var(--nero);
 }
 
 #send-button {
   border-style: hidden;
   border-radius: 999px;
   padding: 0.6rem 1.5rem;
-  background-color: var(--verde);
+  background-color: var(--accento);
   color: var(--nero);
 }
 
@@ -642,6 +877,8 @@ form .form-control {
 }
 
 #info-card-box {
+  box-shadow: none !important;
+  border: 1px solid var(--grigio-chiaro);
   padding: 3rem !important;
   border-radius: var(--raggio) !important;
   background-color: var(--sfondo) !important;
@@ -663,31 +900,31 @@ form .form-control {
 /* 10. Pagina CV
    ---------------------------------------------------------- */
 
-#curriculum {
+.curriculum {
   padding-top: 1rem;
 }
 
-#curriculum h2 {
+.curriculum h2 {
   padding-top: 1rem;
   font-size: clamp(2rem, 6vw, 2.1rem);
   letter-spacing: -2px;
 }
 
-#curriculum h6 {
+.curriculum h6 {
   padding-bottom: 1rem;
   font-size: 16px;
   text-transform: none;
-  color: var(--verde);
+  color: var(--nero);
 }
 
-#curriculum hr {
+.curriculum hr {
   width: 10%;
   height: 4px;
-  background-color: var(--verde);
+  background-color: var(--accento);
   opacity: 1;
 }
 
-#curriculum p {
+.curriculum p {
   padding-top: 1rem;
 }
 
@@ -750,10 +987,7 @@ form .form-control {
   list-style-type: disc;
   text-align: left;
 }
-#lavori > h6,
-#lavori > h2 {
-  text-align: center;
-}
+
 .dot-list li {
   margin-bottom: 0.5rem;
   padding: 10px 20px;
@@ -764,10 +998,17 @@ form .form-control {
 }
 
 #info-contact li {
-  margin-bottom: 2rem;
+  display: block;
+  margin-bottom: 1.5rem;
   padding: 0;
   border-radius: 0;
-  background-color: var(--sfondo) !important;
+  background-color: transparent !important;
+  text-align: left;
+}
+
+#info-contact li span {
+  font-size: 0.9rem;
+  color: var(--nero);
 }
 
 #img-cv {
@@ -793,7 +1034,6 @@ form .form-control {
 
 .float-hover:hover {
   transform: translateY(-8px);
-  color: var(--verde);
 }
 
 #rotate {
@@ -819,11 +1059,6 @@ form .form-control {
   }
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
 @keyframes pulseAnim {
   0%   { transform: scale(1);   opacity: 1; }
   50%  { transform: scale(1.6); opacity: 0.4; }
@@ -831,46 +1066,39 @@ form .form-control {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-img-hover { transition: none; }
+  html,
+  .card,
+  .card-img-hover,
+  #lavori .toggle-lavori::before,
+  #rotating-icon img,
+  #rotating-icon::before,
+  #heading-cta a mark {
+    transition: none;
+  }
+
+  .intro-title mark::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .slide-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 
 /* 12. Responsive
    ---------------------------------------------------------- */
 
-/* Tablet */
-@media (max-width: 991px) {
-  #clienti-griglia {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 /* Mobile */
 @media (max-width: 768px) {
   body {
     padding: 5%;
-    padding-top: 25%;
+    padding-top: 100px;
   }
-    #heading-cta h1,
-  #heading-cta h2 {
-    font-size: 9vw;
-    line-height: 1.05;
-    text-wrap: balance;
-  }
-   #lavori .toggle-lavori {
-    width: 100%;
-    margin: 2rem 0 2.5rem;
-    padding: 5px;
-  }
-  #lavori .toggle-lavori::before {
-    top: 5px;
-    bottom: 5px;
-    left: 5px;
-    width: calc(50% - 5px);
-  }
-  #lavori .toggle-lavori .nav-link {
-    padding: 0.7rem 1rem;
-  }
+
   .container {
     padding-left: 1%;
     padding-right: 1%;
@@ -898,6 +1126,7 @@ form .form-control {
     display: none;
   }
 
+  /* Menu a schermo pieno */
   #menu {
     position: fixed;
     top: 80px;
@@ -909,16 +1138,18 @@ form .form-control {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: var(--verde);
+    background: var(--accento);
     transition: max-height 0.35s ease;
   }
 
   #nav-toggle:checked ~ #menu {
     max-height: calc(100dvh - 80px);
   }
- body:has(#nav-toggle:checked) {
+
+  body:has(#nav-toggle:checked) {
     overflow: hidden;
   }
+
   #nav-toggle:checked + #hamburger::before {
     top: 9px;
     transform: rotate(45deg);
@@ -937,30 +1168,36 @@ form .form-control {
   }
 
   .menu li a {
-    font-family: var(--font-titoli);
-    font-size: 30px;
-    letter-spacing: -2px;
-    color: var(--grigio-chiaro);
+    font-family: var(--font-titoli) !important;
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--nero);
   }
 
-  /* Home */
-  #heading-top {
-    padding: 0;
+  /* Intro */
+  .intro-title {
+    font-size: 11vw;
   }
 
-  #card-about {
-    margin-right: 0;
+  /* Toggle */
+  #lavori .toggle-lavori {
+    width: 100%;
+    margin: 2rem 0 2.5rem;
+    padding: 5px;
   }
-.hero-title {
-  font-size: clamp(3rem, 6vw, 5rem);
-  letter-spacing: -0.045em;
-  line-height: 0.95;
-}
-  .hero-sub {
-    font-size: 0.4em;
-    letter-spacing: -0.02em;
-    margin-top: 0.6em;
+
+  #lavori .toggle-lavori::before {
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    width: calc(50% - 5px);
   }
+
+  #lavori .toggle-lavori .nav-link {
+    padding: 0.7rem 1rem;
+  }
+
   /* Card */
   .card {
     margin-top: 0;
@@ -974,35 +1211,51 @@ form .form-control {
     padding-top: 0;
   }
 
-  /* Footer */
+  /* Chi sono */
+  #heading {
+    padding: 0;
+  }
+
+  #card-about {
+    margin-right: 0;
+  }
+
+  #card-about .card-img {
+    aspect-ratio: 1 / 1;
+    object-position: center 25%;
+  }
+
+  /* CTA */
+  #heading-cta h2 {
+    font-size: 9vw;
+    line-height: 1.05;
+  }
+
+  /* Footer: una colonna */
   #footer {
-    flex-direction: column;
-    align-items: start;
-    row-gap: 0.5rem;
-    margin-bottom: 2rem;
-    padding-top: 15%;
-    text-align: left !important;
-  }
-
-  footer p {
-    padding-top: 0;
-    padding-bottom: 0;
-    font-family: var(--font-titoli) !important;
-  }
-
-  #navigation,
-  #social {
-    padding-top: 10%;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   #social {
-    flex-direction: column;
     align-items: start;
-    text-align: left !important;
   }
 
-  #social ul {
+  #colophon {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  #colophon p:last-child {
     text-align: left;
+  }
+
+  #rotating-icon,
+  #rotating-icon img {
+    width: 36px;
+    height: 36px;
   }
 
   /* Contatti e CV */
@@ -1010,7 +1263,7 @@ form .form-control {
     padding: 3rem !important;
   }
 
-  #curriculum {
+  .curriculum {
     padding-top: 0;
   }
 
@@ -1019,7 +1272,27 @@ form .form-control {
   }
 
   .cv-column h3 {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .job-heading {
+    flex-direction: column;
+    align-items: start;
+    gap: 0.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .job-year {
+    margin-left: 0;
+    font-size: 0.85rem;
+  }
+
+  .cv-column h4 {
+    margin-top: 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--grigio-testo);
   }
 
   .dot-list li {
@@ -1028,19 +1301,20 @@ form .form-control {
   }
 }
 
-/* Telefono piccolo */
+/* Telefono */
 @media (max-width: 575px) {
+  #clienti {
+    margin: 4rem auto;
+    padding: 2.5rem 0;
+  }
+
   #clienti-griglia {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.95rem 1.65rem;
+    gap: 2rem 2.5rem;
   }
 
-  .logo-cella {
-    height: 56px;
-  }
-
-  .logo-cella.largo img {
-    max-height: 100%;
+  .logo-cella img {
+    height: calc(56px * var(--s, 1));
+    max-width: 150px;
   }
 }
 

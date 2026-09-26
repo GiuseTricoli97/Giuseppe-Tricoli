@@ -3,406 +3,357 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Giuseppe Tricoli | Graphic Designer & Web Developer</title>
+    <title>Giuseppe Tricoli | Graphic Designer &amp; Web Developer</title>
+    <meta
+      name="description"
+      content="Giuseppe Tricoli, grafico e web developer a Torino. Identità visive, poster, contenuti social e siti WordPress e WooCommerce."
+    />
     <link rel="icon" href="img/favicon.png?v=3" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet" />
+    <script>
+      try { document.documentElement.setAttribute("data-tema", localStorage.getItem("tema") || "base"); } catch (e) {}
+    </script>
   </head>
+
   <body>
     <a id="top"></a>
 
+    <!-- ===== HEADER ===== -->
     <header id="top-bar">
       <div class="row g-0">
-        <div class="col-6 col-md-4" id="logo">
+        <div class="col-6 col-md-4">
           <p id="logo">
-            <a href="index.html" style="font-weight: 500"><b>giuseppe.tricoli</b></a>
+            <a href="index.html"><b>giuseppe.tricoli</b></a>
           </p>
         </div>
+
         <input type="checkbox" id="nav-toggle" />
-        <label for="nav-toggle" id="hamburger"></label>
-        <div class="col-6 col-md-4" id="menu">
+        <label for="nav-toggle" id="hamburger" aria-label="Apri il menu"></label>
+
+        <nav class="col-6 col-md-4" id="menu">
           <ul class="menu">
             <li class="float-hover"><a href="index.html">Home</a></li>
             <li class="float-hover"><a href="Cv.html">CV</a></li>
-             <li class="float-hover"><a href="portfolio-web.html">Portfolio web</a></li>
             <li class="float-hover"><a href="contact.html">Contattami</a></li>
           </ul>
-        </div>
+        </nav>
+
         <div class="col-6 col-md-4" id="contact">
-          <button type="button" class="btn btn-primary btn-lg">
-            <a href="contact.html" style="color: white"> Contattami</a>
-          </button>
+          <a href="contact.html" class="btn btn-primary btn-lg">Contattami</a>
         </div>
       </div>
     </header>
-         <section class="container" id="lavori">
-      <h6>Portfolio</h6>
-      <h2>Lavori <mark>selezionati</mark></h2>
-   
 
-    <ul class="nav nav-pills toggle-lavori" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-grafica" type="button" role="tab">Graphic design</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-web" type="button" role="tab">Web development</button>
-  </li>
-</ul>
+    <!-- ===== INTRO + LAVORI ===== -->
+    <section class="container" id="lavori">
+      <h1 class="intro-title">
+        Ciao! Sono Giuseppe, grafico e <mark>web developer.</mark>
+      </h1>
+<p class="intro-sub">
+  Identità visive, poster e siti web per festival, locali e piccole aziende.
+  Scegli da dove iniziare.
+</p>
+      <ul class="nav nav-pills toggle-lavori" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-grafica" type="button" role="tab">Graphic design</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-web" type="button" role="tab">Web development</button>
+        </li>
+      </ul>
 
       <div class="tab-content">
-  <!-- GRAFICA -->
-  <div class="tab-pane fade show active" id="tab-grafica" role="tabpanel">
-  <div class="row g-3">
+        <!-- GRAFICA -->
+        <div class="tab-pane fade show active" id="tab-grafica" role="tabpanel">
+          <div class="row g-3">
 
-    <div class="col-md-6 col-lg-4">
-      <a href="https://www.behance.net/gallery/256257297/TLT-e-sPAZIO211-Identita-visiva-20232024" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-        <div class="card">
-          <div class="card-media">
-            <img src="img/spazio211posters-scaled.webp" class="card-img-top" alt="Poster di TILT e sPAZIO211 Open Air" />
-            <img src="img/hover/tilt.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/256257297/TLT-e-sPAZIO211-Identita-visiva-20232024" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/spazio211posters-scaled.webp" class="card-img-top" alt="Poster di TILT e sPAZIO211 Open Air" />
+                    <img src="img/hover/tilt.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Identità visiva e social</h6>
+                    <h5 class="card-title">T!LT/sPAZIO211</h5>
+                    <p class="card-text">Comunicazione di TILT e della stagione Open Air, 2023–2024</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/256256989/CHAMOISic-XV-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/chamoisic-xv.png" class="card-img-top" alt="Manifesto di CHAMOISic XV" />
+                    <img src="img/hover/chamoisic-xv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Identità visiva</h6>
+                    <h5 class="card-title">CHAMOISic XV</h5>
+                    <p class="card-text">Identità dell'edizione 2024 del festival, in Valle d'Aosta</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/186235793/CHAMOISic-XIV-Ed-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/chamoisic.png" class="card-img-top" alt="Identità visiva di CHAMOISic XIV" />
+                    <img src="img/hover/chamoisic-xiv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Identità visiva</h6>
+                    <h5 class="card-title">CHAMOISic XIV</h5>
+                    <p class="card-text">Edizione 2023: otto comuni, quindici concerti a ingresso gratuito</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/256257743/Copertine-poster-e-merch-per-band" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/marystar.png" class="card-img-top" alt="Poster del tour di Mary Star" />
+                    <img src="img/hover/cassette.png" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Musica</h6>
+                    <h5 class="card-title">Copertine, poster e merch</h5>
+                    <p class="card-text">Lavori per band indipendenti, tra cui Mary Star</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/127398091/Discografica-Fanzine" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/discografica.jpg" class="card-img-top" alt="Copertina della fanzine Disco/Grafica" />
+                    <img src="img/hover/discografica2.jpg" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Editoria | musica</h6>
+                    <h5 class="card-title">Disco/Grafica Fanzine</h5>
+                    <p class="card-text">Fanzine sulla comunicazione visiva nell'industria discografica</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/129524385/Saluzzo-Monviso-Capitale-Italiana-della-Cultura" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/monvisosaluzzo.jpg" class="card-img-top" alt="Proposta di logo per Saluzzo Monviso 2024" />
+                    <img src="img/hover/monviso.jpg" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Logo | concorso</h6>
+                    <h5 class="card-title">Saluzzo Monviso 2024</h5>
+                    <p class="card-text">Proposta per la candidatura a Capitale italiana della cultura</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
           </div>
-          <div class="card-body">
-            <h6>Identità visiva e social</h6>
-            <h5 class="card-title">T!LT/sPAZIO211</h5>
-            <p class="card-text">Comunicazione di TILT e della stagione Open Air, 2023–2024</p>
+
+          <div class="mt-4 text-center">
+            <a href="https://www.behance.net/gtricoli" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+              Altri lavori su Behance&nbsp;<i class="fa fa-behance" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
-      </a>
-    </div>
 
-    <div class="col-md-6 col-lg-4">
-      <a href="https://www.behance.net/gallery/256256989/CHAMOISic-XV-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-        <div class="card">
-          <div class="card-media">
-            <img src="img/chamoisic-xv.png" class="card-img-top" alt="Manifesto di CHAMOISic XV" />
-            <img src="img/hover/chamoisic-xv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-          <div class="card-body">
-            <h6>Identità visiva</h6>
-            <h5 class="card-title">CHAMOISic XV</h5>
-            <p class="card-text">Identità dell'edizione 2024 del festival, in Valle d'Aosta</p>
+        <!-- SITI WEB -->
+        <div class="tab-pane fade" id="tab-web" role="tabpanel">
+          <div class="row g-3">
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.abitadeco.com/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <img src="img/abitadecowhite-17.png" class="card-img-top" alt="Sito web di Abita Deco" />
+                  <div class="card-body">
+                    <h6>WordPress</h6>
+                    <h5 class="card-title">Abita Deco</h5>
+                    <p class="card-text">Restyling completo per uno showroom di arredamento, costruito perché il cliente possa aggiornare pagine e prodotti da solo</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.spazio211.com" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <img src="img/spazio211.png" class="card-img-top" alt="Sito web di sPAZIO211" />
+                  <div class="card-body">
+                    <h6>WordPress</h6>
+                    <h5 class="card-title">sPAZIO211</h5>
+                    <p class="card-text">Nuovo sito al posto di quello del 2005: storia del club, blog, eventi con link diretto all'acquisto dei biglietti</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.islandmusicafe.it/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <img src="img/islandmusicafewhite-1.png" class="card-img-top" alt="Sito web di Island Music Cafè" />
+                  <div class="card-body">
+                    <h6>WordPress</h6>
+                    <h5 class="card-title">Island Music Cafè</h5>
+                    <p class="card-text">Sito progettato da zero per un music pub: menu, eventi e prenotazione del tavolo</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.bluemamarecords.com/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <img src="img/bluemamawhite-20.png" class="card-img-top" alt="Sito web di Blue Mama Records" />
+                  <div class="card-body">
+                    <h6>WordPress</h6>
+                    <h5 class="card-title">Blue Mama Records</h5>
+                    <p class="card-text">Sito progettato da zero per un'etichetta blues, funk e soul</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.newdanceland.it/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <img src="img/newdancelandwhite-14.png" class="card-img-top" alt="Sito web di New Danceland" />
+                  <div class="card-body">
+                    <h6>WordPress</h6>
+                    <h5 class="card-title">New Danceland</h5>
+                    <p class="card-text">Sito per una scuola di danza a Grugliasco</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.ristoranteilvichingo.it/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <img src="img/ristoranteilvichingowhite-18.png" class="card-img-top" alt="Sito web del ristorante Il Vichingo" />
+                  <div class="card-body">
+                    <h6>WordPress</h6>
+                    <h5 class="card-title">Il Vichingo</h5>
+                    <p class="card-text">Sito per un ristorante gourmet, partendo da un tema esistente, con una dark mode aggiunta</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
           </div>
         </div>
-      </a>
-    </div>
-
-    <div class="col-md-6 col-lg-4">
-      <a href="https://www.behance.net/gallery/186235793/CHAMOISic-XIV-Ed-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-        <div class="card">
-          <div class="card-media">
-            <img src="img/chamoisic.png" class="card-img-top" alt="Identità visiva di CHAMOISic XIV" />
-            <img src="img/hover/chamoisic-xiv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-          <div class="card-body">
-            <h6>Identità visiva</h6>
-            <h5 class="card-title">CHAMOISic XIV</h5>
-            <p class="card-text">Edizione 2023: otto comuni, quindici concerti a ingresso gratuito</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-6 col-lg-4">
-      <a href="https://www.behance.net/gallery/256257743/Copertine-poster-e-merch-per-band" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-        <div class="card">
-          <div class="card-media">
-            <img src="img/marystar.png" class="card-img-top" alt="Poster del tour di Mary Star" />
-            <img src="img/hover/cassette.png" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-          <div class="card-body">
-            <h6>Musica</h6>
-            <h5 class="card-title">Copertine, poster e merch</h5>
-            <p class="card-text">Lavori per band indipendenti, tra cui Mary Star</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-6 col-lg-4">
-      <a href="https://www.behance.net/gallery/127398091/Discografica-Fanzine" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-        <div class="card">
-          <div class="card-media">
-            <img src="img/discografica.jpg" class="card-img-top" alt="Copertina della fanzine Disco/Grafica" />
-            <img src="img/hover/discografica2.jpg" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-          <div class="card-body">
-            <h6>Editoria · musica</h6>
-            <h5 class="card-title">Disco/Grafica Fanzine</h5>
-            <p class="card-text">Fanzine sulla comunicazione visiva nell'industria discografica</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-6 col-lg-4">
-      <a href="https://www.behance.net/gallery/129524385/Saluzzo-Monviso-Capitale-Italiana-della-Cultura" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-        <div class="card">
-          <div class="card-media">
-            <img src="img/monvisosaluzzo.jpg" class="card-img-top" alt="Proposta di logo per Saluzzo Monviso 2024" />
-            <img src="img/hover/monviso.jpg" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-          <div class="card-body">
-            <h6>Logo · concorso</h6>
-            <h5 class="card-title">Saluzzo Monviso 2024</h5>
-            <p class="card-text">Proposta per la candidatura a Capitale italiana della cultura</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-  </div>
-  <div class="mt-4 text-center">
-    <a href="https://www.behance.net/gtricoli" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-      Altri lavori su Behance&nbsp;<i class="fa fa-behance" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
-
-  <!-- SITI WEB -->
-  <div class="tab-pane fade" id="tab-web" role="tabpanel">
-    <div class="row g-3">
-
-      <div class="col-md-6 col-lg-4">
-        <a href="https://www.abitadeco.com/" target="_blank" class="text-reset text-decoration-none d-block">
-          <div class="card">
-            <img src="img/abitadecowhite-17.png" class="card-img-top" alt="Sito web di Abita Deco" />
-            <div class="card-body">
-              <h6>WordPress</h6>
-              <h5 class="card-title">Abita Deco</h5>
-              <p class="card-text">Sito per uno showroom di arredamento a Torino</p>
-            </div>
-          </div>
-        </a>
       </div>
-
-      <div class="col-md-6 col-lg-4">
-        <a href="https://www.spazio211.com" target="_blank" class="text-reset text-decoration-none d-block">
-          <div class="card">
-            <img src="img/spazio211.png" class="card-img-top" alt="Sito web di sPAZIO211" />
-            <div class="card-body">
-              <h6>WordPress</h6>
-              <h5 class="card-title">sPAZIO211</h5>
-              <p class="card-text">Live club di Torino: eventi, sale prove e biglietteria</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      
-
-      <div class="col-md-6 col-lg-4">
-        <a href="https://www.islandmusicafe.it/" target="_blank" class="text-reset text-decoration-none d-block">
-          <div class="card">
-            <img src="img/islandmusicafewhite-1.png" class="card-img-top" alt="Sito web di Island Music Cafè" />
-            <div class="card-body">
-              <h6>WordPress</h6>
-              <h5 class="card-title">Island Music Cafè</h5>
-              <p class="card-text">Dinner music e cocktail bar: menu, eventi e prenotazione del tavolo</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <a href="https://www.bluemamarecords.com/" target="_blank" class="text-reset text-decoration-none d-block">
-          <div class="card">
-            <img src="img/bluemamawhite-20.png" class="card-img-top" alt="Sito web di Blue Mama Records" />
-            <div class="card-body">
-              <h6>WordPress</h6>
-              <h5 class="card-title">Blue Mama Records</h5>
-              <p class="card-text">Etichetta blues, funk e soul</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <a href="https://www.newdanceland.it/" target="_blank" class="text-reset text-decoration-none d-block">
-          <div class="card">
-            <img src="img/newdancelandwhite-14.png" class="card-img-top" alt="Sito web di New Danceland" />
-            <div class="card-body">
-              <h6>WordPress</h6>
-              <h5 class="card-title">New Danceland</h5>
-              <p class="card-text">Scuola di danza a Grugliasco</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a href="https://www.ristoranteilvichingo.it/" target="_blank" class="text-reset text-decoration-none d-block">
-          <div class="card">
-            <img src="img/ristoranteilvichingowhite-18.png" class="card-img-top" alt="Sito web di New Danceland" />
-            <div class="card-body">
-              <h6>WordPress</h6>
-              <h5 class="card-title">Il Vichingo</h5>
-              <p class="card-text">Ristorante Gourmet</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
-
     </section>
 
-    
-
+    <!-- ===== CHI SONO ===== -->
     <section class="container" id="about">
       <div class="row g-0">
         <div class="col-lg-6 order-2 order-lg-1">
           <div class="card bg-light text-white" id="card-about">
-            <img
-              src="img/giuseppe-tricoli.png"
-              class="card-img"
-              alt="Foto di Giuseppe Tricoli"
-            />
+            <img src="img/giuseppe-tricoli.png" class="card-img" alt="Foto di Giuseppe Tricoli" />
           </div>
         </div>
+
         <div class="col-lg-6 order-1 order-lg-2" id="heading">
           <h6>Chi sono</h6>
-          <h2>
-            Chi sono, <mark>in breve</mark>
-          </h2>
+          <h2>Grafica e siti, <mark>spesso per gli stessi clienti.</mark></h2>
           <p>
-       Dal 2023 seguo progetti di grafica e di sviluppo web, spesso per gli
-stessi clienti: festival, locali, piccole aziende e realtà
-culturali, soprattutto in Piemonte. Ho curato la comunicazione di
-TILT per sPAZIO211 e l'identità di due edizioni di CHAMOISic. Sul
-web ho realizzato oltre 30 siti web ed e-commerce.
-Gestisco anche campagne Meta Ads, e questo mi aiuta a costruire
-landing page pensando a chi ci arriverà da un annuncio.
-<br><br>
-Quando non lavoro suono la chitarra in una band post-hardcore di Torino. È anche il motivo per cui buona parte dei miei lavori grafici parla di musica.
+            Dal 2020 seguo progetti di grafica e di sviluppo web: festival, locali, piccole aziende e
+            realtà culturali, soprattutto in Piemonte. Ho curato la comunicazione di T!LT per sPAZIO211
+            e l'identità di due edizioni di CHAMOISic. Sul web ho realizzato oltre 30 siti tra siti vetrina ed e-commerce.
+            So gestire un sito con Wordpress + Elementor, o con WooCommerce o Prestashop, inserire integrazioni come Stripe o creare widget PHP custom.
+            Realizzo prototipi con Figma, dall'UI al sito web completo
+            Ho anche competenze nella gestione di campagne Meta Ads, e questo mi aiuta a costruire landing page pensando a chi
+            ci arriverà da un annuncio.
+            <br /><br />
+            Quando non lavoro sono il chitarrista di una band post-hardcore di Torino. È anche il motivo per
+            cui buona parte dei miei lavori grafici <b>parla di musica.</b>
           </p>
-          <button class="cta float-hover">
-           <button type="button" class="btn btn-primary btn-lg">
-            <a href="#lavori" style="color: white">
-              Vedi lavori&nbsp<i class="fa fa-angle-down" aria-hidden="true"></i
-            ></a>
-          </button>
-          <button type="button" class="btn btn-primary btn-lg" id="cta">
-            <a href="contact.html">Scrivimi</a>
-          </button>
-          </button>
+          <a href="Cv.html" class="btn btn-primary btn-lg">Leggi il CV</a>
+          <a href="contact.html" class="btn btn-primary btn-lg" id="cta">Scrivimi</a>
         </div>
       </div>
     </section>
 
+    <!-- ===== CLIENTI ===== -->
+    <section class="container" id="clienti">
+      <h6>Ho lavorato con</h6>
+      <div id="clienti-griglia">
+        <div class="logo-cella" style="--s: 1.2"><img src="img/loghi/spazio211.png" alt="sPAZIO211" /></div>
+        <div class="logo-cella" style="--s: 0.55"><img src="img/loghi/chamoisic.png" alt="CHAMOISic" /></div>
+        <div class="logo-cella" style="--s: 0.5"><img src="img/loghi/premio-buscaglione.png" alt="Premio Buscaglione" /></div>
+        <div class="logo-cella" style="--s: 0.6"><img src="img/loghi/pagella.png" alt="Pagella Non Solo Rock" /></div>
+        <div class="logo-cella" style="--s: 1"><img src="img/loghi/casaradicci.png" alt="Casa Radicci" /></div>
+        <div class="logo-cella" style="--s: 0.6"><img src="img/loghi/abitadeco.png" alt="Abita Deco" /></div>
+      </div>
+    </section>
 
-
-  
-
-   
-
-  <section class="container" id="clienti">
-     <section class="container" id="lavori">
-      <h6>Portfolio</h6>
-      <h2>Ho <mark> lavorato</mark>con</h2>
-
-
-  <div id="clienti-griglia">
-    <div class="logo-cella"><img src="img/loghi/spazio211.png" alt="sPAZIO211" /></div>
-    <div class="logo-cella largo"><img src="img/loghi/chamoisic.png" alt="CHAMOISic" /></div>
-    <div class="logo-cella largo"><img src="img/loghi/premio-buscaglione.jpg" alt="Premio Buscaglione" /></div>
-    <div class="logo-cella"><img src="img/loghi/casaradicci.png" alt="Casa Radicci" /></div>
-    <div class="logo-cella largo"><img src="img/loghi/abitadeco.png" alt="Abita Deco" /></div>
-    <div class="logo-cella"><img src="img/loghi/pagella.png" alt="Pagella Non Solo Rock" /></div>
-  </div>
-</section>
-
+    <!-- ===== CTA ===== -->
     <section class="container slide-up" id="heading-cta">
-      <h1>
-  Cerchi un grafico o un developer?
-  <mark>Scrivimi.</mark>
-</h1>
+      <h2>
+        Cerchi un grafico o un developer?
+        <a href="contact.html"><mark>Scrivimi.</mark></a>
+      </h2>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="container" id="footer">
-      <div id="1">
-        <div>
-          <img
-            src="img/logo-giuseppe-tricoli.png"
-            alt="Logo di Giuseppe Tricoli"
-            id="logo-site"
-          />
-        </div>
-        <p>Graphic Designer & Web Developer</p>
-        <button class="cta float-hover"><a href>tricoli.giuseppe97@gmail.com</a></button>
+      <div id="footer-brand">
+        <img src="img/logo-giuseppe-tricoli.png" alt="Giuseppe Tricoli" id="logo-site" />
+        <p>Graphic Designer &amp; Web Developer</p>
+        <a href="mailto:tricoli.giuseppe97@gmail.com" class="float-hover">tricoli.giuseppe97@gmail.com</a>
       </div>
 
-      <div id="navigation">
-        <h6 style="padding-bottom: 2%">Navigazione</h6>
-        <a href="index.html" style="padding-bottom: 2%" class="float-hover"
-          >Home</a
-        >
-        <a href="Cv.html" style="padding-bottom: 2%" class="float-hover">Cv</a>
-        <a href="contact.html" style="padding-bottom: 2%" class="float-hover"
-          >Contattami</a
-        >
-      </div>
+      <nav id="navigation">
+        <h6>Navigazione</h6>
+        <a href="index.html" class="float-hover">Home</a>
+        <a href="Cv.html" class="float-hover">CV</a>
+        <a href="portfolio-web.html" class="float-hover">Portfolio web</a>
+        <a href="contact.html" class="float-hover">Contattami</a>
+      </nav>
 
       <div id="social">
         <h6>Seguimi</h6>
-        <ul class="social-network social-circle">
-          <li>
-            <a
-              href="https://github.com/GiuseTricoli97"
-              class="icoGithub"
-              title="Github"
-              target="_blank"
-              ><i class="fa fa-github"></i
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://www.behance.net/gtricoli"
-              class="icoBehance"
-              title="Behance"
-              target="_blank"
-              ><i class="fa fa-behance"></i
-            ></a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/giusismyname/"
-              class="instagram"
-              title="Instagram"
-              target="_blank"
-              ><i class="fa fa-instagram"></i
-            ></a>
-          </li>
-
-          <li>
-            <a
-              href="https://www.linkedin.com/in/giuseppe-tricoli/"
-              class="icoLinkedin"
-              title="Linkedin"
-              target="_blank"
-              ><i class="fa fa-linkedin"></i
-            ></a>
-          </li>
+        <ul>
+          <li><a href="https://github.com/GiuseTricoli97" title="GitHub" target="_blank" rel="noopener"><i class="fa fa-github"></i></a></li>
+          <li><a href="https://www.behance.net/gtricoli" title="Behance" target="_blank" rel="noopener"><i class="fa fa-behance"></i></a></li>
+          <li><a href="https://www.instagram.com/giusismyname/" title="Instagram" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/giuseppe-tricoli/" title="LinkedIn" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a></li>
         </ul>
       </div>
     </footer>
+<div class="container" id="colophon">
+  <p>© 2026 Giuseppe Tricoli · P.IVA 12875540010</p>
+  <p>
+    Scritto in HTML e CSS, con un po' di Bootstrap. 
+    
+  </p>
+</div>
 
-    <div class="container">
-      <p>© 2026 Giuseppe Tricoli. All Rights Reserved. P.IVA 12875540010 </p>
-    </div>
-    <a href="#top" id="scrollTopBtn" class="float-hover">↑</a>
-    <a href="#" id="rotating-icon">
-      <img src="img/spin.png" alt="iconcina" />
-    </a>
+    <a href="#top" id="scrollTopBtn" class="float-hover" aria-label="Torna su">↑</a>
+    <button type="button" id="rotating-icon" data-cambia-tema aria-label="Cambia i colori del sito">
+  <img src="img/spin.png" alt="" />
+  <span class="tema-hint" aria-hidden="true">Cambia colori</span>
+</button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/tema.js"></script>
   </body>
 </html>
