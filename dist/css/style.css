@@ -321,7 +321,7 @@ dl {
 .card:hover {
   box-shadow: var(--ombra-hover);
   transform: translateY(-5px);
-  color: var(--verde);
+  
 }
 
 .card-img-top {
@@ -348,7 +348,7 @@ dl {
 }
 
 .card-title {
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -358,7 +358,7 @@ dl {
   color: var(--grigio-testo);
 }
 .card-text {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
   color: var(--grigio-testo);
 }
@@ -499,7 +499,10 @@ dl {
 
 .logo-cella.largo img { max-height: 50%; }
 .logo-cella:hover img { opacity: 1; }
-
+#clienti {
+  margin-top: 6rem;
+  margin-bottom: 8rem;
+}
 
 /* 8. Footer
    ---------------------------------------------------------- */
@@ -554,7 +557,7 @@ footer ul {
   line-height: 50px;
   border-radius: 50%;
   text-align: center;
-  background: var(--verde-chiaro);
+  background: var(--grigio-chiaro);
   color: var(--verde);
   font-size: 20px;
   transition: all 0.3s;
@@ -1028,16 +1031,16 @@ form .form-control {
 /* Telefono piccolo */
 @media (max-width: 575px) {
   #clienti-griglia {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.95rem 1.65rem;
   }
 
   .logo-cella {
-    height: 72px;
+    height: 56px;
   }
 
   .logo-cella.largo img {
-    max-height: 75%;
+    max-height: 100%;
   }
 }
 
