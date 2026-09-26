@@ -1,14 +1,14 @@
 /* ==========================================================
    Giuseppe Tricoli — portfolio
-   1. Font e variabili
+   1. Font e variabili (temi colore, modalità palco)
    2. Base
    3. Header e menu
    4. Pulsanti
-   5. Intro, chi sono, CTA
+   5. Intro, chi sono, CTA, pagine di testo
    6. Card e lavori
    7. Loghi clienti
-   8. Footer
-   9. Pagina contatti
+   8. Footer, asterisco, colophon
+   9. Contatti e form
    10. Pagina CV
    11. Utility e animazioni
    12. Responsive
@@ -39,6 +39,7 @@
   /* Colore d'accento: si cambia solo qui */
   --accento: #69b4c2;
   --accento-chiaro: color-mix(in srgb, var(--accento) 15%, white);
+  --su-accento: #121212;   /* testo sopra l'accento: resta scuro in tutti i casi */
 
   --nero: #121212;
   --grigio-chiaro: #e8e7e4;
@@ -51,25 +52,60 @@
   --ombra-hover: 0 8px 24px hsla(220, 15%, 12%, 0.1);
 }
 
-
-@property --accento {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #69b4c2;
-}
+/* Registrare i colori permette di farli sfumare quando cambiano */
+@property --accento       { syntax: "<color>"; inherits: true; initial-value: #69b4c2; }
+@property --sfondo        { syntax: "<color>"; inherits: true; initial-value: #f9f9f7; }
+@property --nero          { syntax: "<color>"; inherits: true; initial-value: #121212; }
+@property --grigio-testo  { syntax: "<color>"; inherits: true; initial-value: #5f6573; }
+@property --grigio-chiaro { syntax: "<color>"; inherits: true; initial-value: #e8e7e4; }
 
 html {
-  transition: --accento 0.5s ease;
+  transition:
+    --accento 0.5s ease,
+    --sfondo 0.3s ease,
+    --nero 0.3s ease,
+    --grigio-testo 0.3s ease,
+    --grigio-chiaro 0.3s ease;
 }
 
 /* Temi colore: si alternano cliccando l'asterisco.
    Cambia solo l'accento: sfondo, testi e grigi restano fissi.
-   Contrasto del testo nero su ogni accento: tra 7.7:1 e 10:1 (WCAG AA).
+   Contrasto del testo scuro su ogni accento: tra 7.7:1 e 10:1 (WCAG AA).
    L'accento si usa SOLO come sfondo, mai come colore del testo. */
 html[data-tema="carta"]  { --accento: #f0b429; }
 html[data-tema="rosa"]   { --accento: #f28b9b; }
 html[data-tema="salvia"] { --accento: #9fcc5a; }
 html[data-tema="lilla"]  { --accento: #a99bf0; }
+
+/* Modalità palco: la foto live spegne le luci su tutto il sito.
+   Contrasti: testo/sfondo 17:1, grigio/sfondo 7.8:1, grigio/grigio-chiaro 6:1.
+   Il testo sopra l'accento usa --su-accento e resta scuro. */
+html:has(.about-media:hover),
+html:has(.about-media:focus) {
+  --sfondo: #121212;
+  --nero: #f5f5f2;
+  --grigio-testo: #a4a8b2;
+  --grigio-chiaro: #2a2a2a;
+}
+
+/* Sul fondo scuro la sottolineatura resta sotto le lettere */
+html:has(.about-media:hover) mark,
+html:has(.about-media:focus) mark {
+  box-shadow: inset 0 -0.12em 0 var(--accento);
+}
+
+/* Immagini nere in PNG: invertite per non sparire */
+html:has(.about-media:hover) :is(#rotating-icon img, #logo-site),
+html:has(.about-media:focus) :is(#rotating-icon img, #logo-site) {
+  filter: invert(1);
+}
+
+/* Loghi clienti: il multiply sul nero li farebbe sparire */
+html:has(.about-media:hover) .logo-cella img,
+html:has(.about-media:focus) .logo-cella img {
+  mix-blend-mode: normal;
+  filter: grayscale(1) invert(1);
+}
 
 
 /* 2. Base
@@ -80,7 +116,6 @@ body {
   color: var(--nero);
   font-family: var(--font-titoli) !important;
   padding-top: 80px;
-  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1,
@@ -90,67 +125,7 @@ h2 {
   letter-spacing: -0.04em;
   line-height: 1em;
 }
-.intro-sub {
-  max-width: 44ch;
-  margin: 1.75rem auto 0;
-  text-align: center;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: var(--grigio-testo);
-}
 
-/* Pagine di solo testo (privacy) */
-.pagina-testo {
-  max-width: 70ch;
-}
-
-.pagina-testo h1 {
-  margin-bottom: 0.5rem;
-}
-
-.pagina-testo h2 {
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
-}
-
-.pagina-testo h3 {
-  margin-top: 1.5rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.pagina-testo p,
-.pagina-testo li {
-  font-size: 0.95rem;
-  line-height: 1.65;
-}
-
-.pagina-testo a {
-  font-size: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--accento);
-  text-underline-offset: 0.2em;
-}
-
-.pagina-testo .aggiornamento {
-  margin-bottom: 2rem;
-  font-size: 0.8rem;
-}
-
-.pagina-testo .lista-testo {
-  display: block;
-  padding-left: 1.25rem !important;
-  text-align: left;
-  list-style: disc;
-}
-
-.pagina-testo .lista-testo li {
-  display: list-item;
-  margin-bottom: 0.5rem;
-  color: var(--grigio-testo);
-}
 p,
 a {
   font-family: var(--font-testo) !important;
@@ -173,6 +148,7 @@ h6 {
 
 mark {
   background: none;
+  color: inherit;
   box-shadow: inset 0 -0.4em 0 var(--accento);
   padding: 0 0.1em;
 }
@@ -227,7 +203,7 @@ dl {
   flex-direction: column;
   justify-content: space-around;
   padding: 0;
-  background-color: rgba(0, 0, 0, 0.025);
+  background-color: color-mix(in srgb, var(--sfondo) 80%, transparent);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
 }
@@ -264,6 +240,11 @@ dl {
 
 .menu li a:hover {
   text-decoration-color: var(--accento);
+}
+
+/* Icone social nel menu: visibili solo su mobile */
+.menu-social {
+  display: none;
 }
 
 #contact {
@@ -321,7 +302,7 @@ button,
 .btn:hover {
   background-color: var(--accento) !important;
   border-color: var(--accento) !important;
-  color: var(--nero) !important;
+  color: var(--su-accento) !important;
 }
 
 #cta {
@@ -330,7 +311,7 @@ button,
   color: var(--nero);
 }
 
-/* Link-bottone senza sfondo (usato nelle pagine CV e contatti) */
+/* Link-bottone senza sfondo */
 .cta {
   margin: 0;
   padding: 0;
@@ -341,7 +322,7 @@ button,
 }
 
 
-/* 5. Intro, chi sono, CTA
+/* 5. Intro, chi sono, CTA, pagine di testo
    ---------------------------------------------------------- */
 
 /* Titolo di apertura */
@@ -361,6 +342,33 @@ button,
   white-space: nowrap;
   box-shadow: none;
   text-decoration: none;
+}
+
+.intro-title mark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;   /* alza o abbassa la linea da qui */
+  height: 0.2em;
+  z-index: -1;
+  background: var(--accento);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: sottolinea 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.4s forwards;
+}
+
+@keyframes sottolinea {
+  to { transform: scaleX(1); }
+}
+
+.intro-sub {
+  max-width: 44ch;
+  margin: 1.75rem auto 0;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--grigio-testo);
 }
 
 /* Simboli di codice che escono da "web developer" */
@@ -393,24 +401,6 @@ button,
   }
 }
 
-.intro-title mark::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.1em;   /* alza o abbassa la linea da qui */
-  height: 0.2em;
-  z-index: -1;
-  background: var(--accento);
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: sottolinea 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.4s forwards;
-}
-
-@keyframes sottolinea {
-  to { transform: scaleX(1); }
-}
-
 /* Chi sono */
 #heading {
   padding: 0 6% 0 0;
@@ -423,7 +413,7 @@ button,
 
 #card-about {
   margin-right: 15%;
-  background: var(--sfondo) !important;
+  background: transparent !important;
   border-style: hidden;
   border-radius: var(--raggio);
   box-shadow: none !important;
@@ -435,6 +425,51 @@ button,
   object-fit: cover;
   border-radius: var(--raggio);
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+/* Foto "Chi sono": al passaggio compare la foto live */
+.about-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--raggio);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.about-media .about-hover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  box-shadow: none;
+  transition: opacity 0.15s ease-out;
+}
+
+@media (hover: hover) {
+  .about-media:hover {
+    transform: rotate(-3deg);
+  }
+
+  .about-media:hover .about-hover {
+    opacity: 1;
+  }
+}
+
+/* Su mobile: tocca la foto per attivarla, tocca altrove per tornare indietro */
+.about-media:focus {
+  outline: none;
+  transform: rotate(-3deg);
+}
+
+.about-media:focus .about-hover {
+  opacity: 1;
+}
+
+.about-media:focus-visible {
+  outline: 2px solid var(--accento);
+  outline-offset: 4px;
 }
 
 /* CTA finale */
@@ -465,6 +500,60 @@ button,
 #heading-cta a:hover mark,
 #heading-cta a:focus-visible mark {
   box-shadow: inset 0 -1em 0 var(--accento);
+  color: var(--su-accento);
+}
+
+/* Pagine di solo testo (privacy) */
+.pagina-testo {
+  max-width: 70ch;
+}
+
+.pagina-testo h1 {
+  margin-bottom: 0.5rem;
+}
+
+.pagina-testo h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.pagina-testo h3 {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.pagina-testo p,
+.pagina-testo li {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.pagina-testo a {
+  font-size: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accento);
+  text-underline-offset: 0.2em;
+}
+
+.pagina-testo .aggiornamento {
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+}
+
+.pagina-testo .lista-testo {
+  display: block;
+  padding-left: 1.25rem !important;
+  text-align: left;
+  list-style: disc;
+}
+
+.pagina-testo .lista-testo li {
+  display: list-item;
+  margin-bottom: 0.5rem;
+  color: var(--grigio-testo);
 }
 
 
@@ -578,7 +667,7 @@ button,
   grid-template-columns: 1fr 1fr;
   width: max-content;
   max-width: 100%;
-margin: 2rem auto 3rem;
+  margin: 2rem auto 3rem;
   padding: 4px;
   border-radius: 999px;
   background: var(--grigio-chiaro);
@@ -620,7 +709,7 @@ margin: 2rem auto 3rem;
 }
 
 #lavori .toggle-lavori .nav-link.active {
-  color: var(--nero);
+  color: var(--su-accento);
   font-weight: 500;
 }
 
@@ -652,7 +741,7 @@ margin: 2rem auto 3rem;
 
 /* --s nell'HTML regola la scala di ogni singolo logo */
 .logo-cella img {
-   display: block;
+  display: block;
   height: calc(104px * var(--s, 1));
   width: auto;
   max-width: 260px;
@@ -668,7 +757,7 @@ margin: 2rem auto 3rem;
 }
 
 
-/* 8. Footer
+/* 8. Footer, asterisco, colophon
    ---------------------------------------------------------- */
 
 #footer {
@@ -738,7 +827,7 @@ margin: 2rem auto 3rem;
   border-radius: 50%;
   text-align: center;
   background: var(--accento-chiaro);
-  color: var(--nero);
+  color: var(--su-accento);
   font-size: 20px;
   transition: all 0.3s;
 }
@@ -768,10 +857,11 @@ margin: 2rem auto 3rem;
 
 #scrollTopBtn:hover {
   background-color: var(--accento);
-  color: var(--nero);
+  color: var(--su-accento);
   transform: translateY(-5px);
 }
 
+/* Asterisco che cambia i colori */
 #rotating-icon {
   position: fixed;
   left: 15px;
@@ -880,38 +970,124 @@ margin: 2rem auto 3rem;
 }
 
 
-/* 9. Pagina contatti
+/* 9. Contatti e form
    ---------------------------------------------------------- */
+
+#contatti h2 {
+  margin-bottom: 1.25rem;
+}
+
+#contatti > .row {
+  margin-top: 2.5rem;
+}
 
 #form-container {
   padding-right: 5%;
 }
 
-form .form-control {
-  border-radius: 10px;
-  background-color: var(--sfondo);
-  border-color: var(--grigio-chiaro);
+#contact-form .mb-4 {
+  margin-bottom: 2.25rem !important;
+}
+
+#contact-form .form-label {
+  margin-bottom: 0.25rem;
+  font-family: var(--font-testo);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--grigio-testo);
+}
+
+#contact-form .form-control {
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--grigio-testo);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-titoli);
+  font-size: 1.5rem;
   color: var(--nero);
+  transition: box-shadow 0.2s ease;
+}
+
+#contact-form .form-control::placeholder {
+  color: var(--grigio-testo);
+  opacity: 0.6;
+}
+
+#contact-form .form-control:focus {
+  border-bottom-color: var(--nero);
+  box-shadow: 0 2px 0 var(--accento);
+}
+
+#contact-form textarea.form-control {
+  min-height: 140px;
+  font-size: 1.25rem;
+  resize: vertical;
 }
 
 #send-button {
-  border-style: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  border: 0;
   border-radius: 999px;
-  padding: 0.6rem 1.5rem;
-  background-color: var(--accento);
-  color: var(--nero);
+  background-color: var(--nero);
+  color: var(--sfondo);
+  font-size: 1.05rem;
 }
 
+#send-button i {
+  transition: transform 0.25s ease;
+}
+
+#send-button:hover i,
+#send-button:focus-visible i {
+  transform: translateX(6px);
+}
+
+.nota-form {
+  margin-top: -0.5rem;
+  font-size: 0.8rem;
+}
+
+.nota-form a {
+  font-size: inherit;
+  text-decoration: underline;
+}
+
+/* Riquadro contatti: sempre in negativo rispetto alla pagina */
 #info-card {
   padding-bottom: 5%;
 }
 
 #info-card-box {
-  box-shadow: none !important;
-  border: 1px solid var(--grigio-chiaro);
   padding: 3rem !important;
+  border: 0;
   border-radius: var(--raggio) !important;
-  background-color: var(--sfondo) !important;
+  background-color: var(--nero) !important;
+  box-shadow: none !important;
+  color: var(--sfondo);
+}
+
+#info-card-box h6,
+#info-card-box a,
+#info-card-box span,
+#info-card-box .fw-semibold {
+  color: var(--sfondo) !important;
+}
+
+#info-card-box li,
+#info-card-box p,
+#info-card-box .text-muted {
+  color: color-mix(in srgb, var(--sfondo) 65%, transparent) !important;
+}
+
+#info-card-box hr,
+#info-card-box .border-top {
+  border-color: color-mix(in srgb, var(--sfondo) 15%, transparent) !important;
 }
 
 .availability-dot {
@@ -925,13 +1101,7 @@ form .form-control {
 .pulse {
   animation: pulseAnim 1.4s infinite ease-in-out;
 }
-#contatti h2 {
-  margin-bottom: 1.25rem;
-}
 
-#contatti > .row {
-  margin-top: 2.5rem;
-}
 
 /* 10. Pagina CV
    ---------------------------------------------------------- */
@@ -1105,11 +1275,18 @@ form .form-control {
   html,
   .card,
   .card-img-hover,
+  .about-media,
+  .about-media .about-hover,
   #lavori .toggle-lavori::before,
   #rotating-icon img,
   #rotating-icon::before,
   #heading-cta a mark {
     transition: none;
+  }
+
+  .about-media:hover,
+  .about-media:focus {
+    transform: none;
   }
 
   .intro-title mark::after {
@@ -1171,8 +1348,10 @@ form .form-control {
     height: calc(100dvh - 80px);
     max-height: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 3.5rem;
     overflow: hidden;
     background: var(--nero);
     transition: max-height 0.35s ease;
@@ -1199,18 +1378,40 @@ form .form-control {
   #menu ul {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.75rem;
     padding: 0;
   }
 
   .menu li a {
-  
     font-family: var(--font-titoli) !important;
     font-size: 2.5rem;
     font-weight: 500;
     letter-spacing: -0.03em;
     color: var(--sfondo);
-  
+  }
+
+  .menu-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .menu-social a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--sfondo) 8%, transparent);
+    color: var(--sfondo);
+    font-size: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .menu-social a:hover,
+  .menu-social a:focus-visible {
+    background: var(--accento);
+    color: var(--su-accento);
   }
 
   /* Intro */
@@ -1296,11 +1497,16 @@ form .form-control {
     height: 36px;
   }
 
-  /* Contatti e CV */
-  #info-card-box {
-    padding: 3rem !important;
+  /* Contatti */
+  #form-container {
+    padding-right: 0;
   }
 
+  #info-card-box {
+    padding: 2rem !important;
+  }
+
+  /* CV */
   .curriculum {
     padding-top: 0;
   }
@@ -1363,6 +1569,7 @@ form .form-control {
     height: calc(64px * max(var(--s, 1), 0.85));
     max-width: 100%;
   }
+}
 
 @media (max-width: 480px) {
   #img-cv {
