@@ -357,16 +357,50 @@ dl {
   font-weight: 400;
   color: var(--grigio-testo);
 }
+.card-text {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--grigio-testo);
+}
 
+/* Card lavori: stessa altezza, stesse proporzioni */
+#lavori .row {
+  align-items: stretch;
+}
+
+#lavori .row > [class*="col-"] > a,
+#lavori .card {
+  height: 100%;
+}
+
+#lavori .card {
+  margin-top: 0;
+}
+
+#lavori .card-media,
+#lavori .card > .card-img-top {
+  aspect-ratio: 4 / 3;
+}
+
+#lavori .card-media img,
+#lavori .card > .card-img-top {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+/* Toggle Grafica / Web */
 /* Tab Grafica / Web */
 /* Toggle Grafica / Web */
 #lavori .toggle-lavori {
-  font-family: var(--font-testo) !important;
-  position: relative;
+   position: relative;
   display: flex;
   flex-wrap: nowrap;
-  width: fit-content;
-  margin: 1.5rem 0 1.5rem auto;
+  width: max-content;
+  max-width: 100%;
+   margin: 3rem auto 3rem;
   padding: 4px;
   border-radius: 999px;
   background: var(--grigio-chiaro);
@@ -442,7 +476,7 @@ dl {
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem 3rem;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 }
 
 .logo-cella {
@@ -713,7 +747,10 @@ form .form-control {
   list-style-type: disc;
   text-align: left;
 }
-
+#lavori > h6,
+#lavori > h2 {
+  text-align: center;
+}
 .dot-list li {
   margin-bottom: 0.5rem;
   padding: 10px 20px;
@@ -811,9 +848,25 @@ form .form-control {
     padding: 5%;
     padding-top: 25%;
   }
-  #lavori .toggle-lavori {
+    #heading-cta h1,
+  #heading-cta h2 {
+    font-size: 9vw;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+   #lavori .toggle-lavori {
     width: 100%;
-    margin-left: 0;
+    margin: 2rem 0 2.5rem;
+    padding: 5px;
+  }
+  #lavori .toggle-lavori::before {
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    width: calc(50% - 5px);
+  }
+  #lavori .toggle-lavori .nav-link {
+    padding: 0.7rem 1rem;
   }
   .container {
     padding-left: 1%;
@@ -843,27 +896,26 @@ form .form-control {
   }
 
   #menu {
-    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100dvh - 80px);
     max-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+    background: var(--verde);
     transition: max-height 0.35s ease;
   }
 
   #nav-toggle:checked ~ #menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 50vh;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--nero);
-    text-transform: uppercase;
-    font-family: var(--font-testo) !important;
+    max-height: calc(100dvh - 80px);
   }
-
+ body:has(#nav-toggle:checked) {
+    overflow: hidden;
+  }
   #nav-toggle:checked + #hamburger::before {
     top: 9px;
     transform: rotate(45deg);
@@ -896,14 +948,23 @@ form .form-control {
   #card-about {
     margin-right: 0;
   }
-
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+  .hero-sub {
+    font-size: 0.4em;
+    letter-spacing: -0.02em;
+    margin-top: 0.6em;
+  }
   /* Card */
   .card {
     margin-top: 0;
   }
 
   .card-body {
-    padding: 10% 10% 1% 5%;
+    padding: 1.5rem 1.5rem 1.75rem;
   }
 
   .card-text {
