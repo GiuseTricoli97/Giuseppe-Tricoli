@@ -1,11 +1,13 @@
 @font-face {
   font-family: "Inter";
-  src: url("../font/Inter.woff2") format("woff2"), url("../font/Inter.woff") format("woff"), url("../font/Inter.ttf") format("truetype");
+  src: url("../../font/Inter.woff2") format("woff2"),
+       url("../../font/Inter.woff") format("woff"),
+       url("../../font/Inter.ttf") format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "Space Grotesk";
-  src: url("../font/SpaceGrotesk.ttf") format("truetype");
+  src: url("../../font/SpaceGrotesk.ttf") format("truetype");
   font-display: swap;
 }
 
