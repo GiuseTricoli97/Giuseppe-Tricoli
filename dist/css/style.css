@@ -652,10 +652,10 @@ margin: 2rem auto 3rem;
 
 /* --s nell'HTML regola la scala di ogni singolo logo */
 .logo-cella img {
-  display: block;
-  height: calc(90px * var(--s, 1));
+   display: block;
+  height: calc(104px * var(--s, 1));
   width: auto;
-  max-width: 230px;
+  max-width: 260px;
   object-fit: contain;
   filter: grayscale(1);
   opacity: 0.55;
@@ -925,7 +925,13 @@ form .form-control {
 .pulse {
   animation: pulseAnim 1.4s infinite ease-in-out;
 }
+#contatti h2 {
+  margin-bottom: 1.25rem;
+}
 
+#contatti > .row {
+  margin-top: 2.5rem;
+}
 
 /* 10. Pagina CV
    ---------------------------------------------------------- */
@@ -1168,7 +1174,7 @@ form .form-control {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: var(--accento);
+    background: var(--nero);
     transition: max-height 0.35s ease;
   }
 
@@ -1198,11 +1204,13 @@ form .form-control {
   }
 
   .menu li a {
+  
     font-family: var(--font-titoli) !important;
     font-size: 2.5rem;
     font-weight: 500;
     letter-spacing: -0.03em;
-    color: var(--nero);
+    color: var(--sfondo);
+  
   }
 
   /* Intro */
@@ -1339,14 +1347,22 @@ form .form-control {
   }
 
   #clienti-griglia {
-    gap: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.25rem 1rem;
+    justify-items: center;
+  }
+
+  .logo-cella {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   .logo-cella img {
-    height: calc(56px * var(--s, 1));
-    max-width: 150px;
+    height: calc(64px * max(var(--s, 1), 0.85));
+    max-width: 100%;
   }
-}
 
 @media (max-width: 480px) {
   #img-cv {
