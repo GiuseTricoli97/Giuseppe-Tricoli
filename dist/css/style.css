@@ -52,7 +52,8 @@
   --ombra-hover: 0 8px 24px hsla(220, 15%, 12%, 0.1);
 }
 
-/* Registrare i colori permette di farli sfumare quando cambiano */
+/* Colori registrati: l'accento sfuma al cambio tema,
+   gli altri cambiano di colpo (modalità palco istantanea) */
 @property --accento       { syntax: "<color>"; inherits: true; initial-value: #69b4c2; }
 @property --sfondo        { syntax: "<color>"; inherits: true; initial-value: #f9f9f7; }
 @property --nero          { syntax: "<color>"; inherits: true; initial-value: #121212; }
@@ -60,12 +61,7 @@
 @property --grigio-chiaro { syntax: "<color>"; inherits: true; initial-value: #e8e7e4; }
 
 html {
-  transition:
-    --accento 0.5s ease,
-    --sfondo 0.3s ease,
-    --nero 0.3s ease,
-    --grigio-testo 0.3s ease,
-    --grigio-chiaro 0.3s ease;
+  transition: --accento 0.5s ease;
 }
 
 /* Temi colore: si alternano cliccando l'asterisco.
@@ -432,7 +428,6 @@ button,
   position: relative;
   overflow: hidden;
   border-radius: var(--raggio);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .about-media .about-hover {
@@ -448,10 +443,6 @@ button,
 }
 
 @media (hover: hover) {
-  .about-media:hover {
-    transform: rotate(-3deg);
-  }
-
   .about-media:hover .about-hover {
     opacity: 1;
   }
@@ -460,7 +451,6 @@ button,
 /* Su mobile: tocca la foto per attivarla, tocca altrove per tornare indietro */
 .about-media:focus {
   outline: none;
-  transform: rotate(-3deg);
 }
 
 .about-media:focus .about-hover {
@@ -1275,18 +1265,12 @@ button,
   html,
   .card,
   .card-img-hover,
-  .about-media,
   .about-media .about-hover,
   #lavori .toggle-lavori::before,
   #rotating-icon img,
   #rotating-icon::before,
   #heading-cta a mark {
     transition: none;
-  }
-
-  .about-media:hover,
-  .about-media:focus {
-    transform: none;
   }
 
   .intro-title mark::after {
