@@ -1,20 +1,4 @@
-@font-face {
-  font-family: "Inter";
-  src:
-    url("../font/Inter.woff2") format("woff2"),
-    url("../font/Inter.woff") format("woff"),
-    url("../font/Inter.ttf") format("truetype");
-  font-display: swap;
-}
 
-@font-face {
-  font-family: "Space Grotesk";
-  src: url("../font/SpaceGrotesk.ttf") format("truetype");
-  font-display: swap;
-}
-
-$font-base: "Space Grotesk", sans-serif;
-$font-text: "Inter", sans-serif;
 $primary-color: #121212;
 $secondary-color: #8cd00c;
 $menu-color: #c2daa543;
@@ -30,16 +14,17 @@ body {
 
 h1 {
   font-size: clamp(4rem, 8vw, 5rem);
-  font-weight: 600;
-  letter-spacing: -3pt;
-  line-height: 1.05;
+  font-weight: 800;
+  font-stretch: 70%;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
 }
 h2 {
   font-size: clamp(3rem, 5vw, 3.5rem);
-  font-weight: 600;
-  letter-spacing: -3pt;
+  font-weight: 800;
+  font-stretch: 70%;
+  letter-spacing: -0.01em;
 }
-
 p {
   font-family: $font-text !important;
   font-size: 1rem;
@@ -601,6 +586,7 @@ hr {
   width: 100%;
   margin-bottom: 1rem;
 }
+
 
 .job-title {
   font-weight: 600;
