@@ -1,6 +1,6 @@
 /* ==========================================================
    Giuseppe Tricoli — portfolio
-   1. Font e variabili (temi colore, modalità palco)
+   1. Font e variabili (temi colore, modalità scura)
    2. Base
    3. Header e menu
    4. Pulsanti
@@ -26,19 +26,28 @@
   font-display: swap;
 }
 
+/* Sofia Sans Extra Condensed (licenza SIL OFL): file variabile, tutti i pesi */
 @font-face {
-  font-family: "Space Grotesk";
-  src: url("../../font/SpaceGrotesk.ttf") format("truetype");
+  font-family: "Sofia Sans Extra Condensed";
+  src: url("../../font/SofiaSansExtraCondensed-VariableFont_wght.ttf") format("truetype");
+  font-weight: 1 1000;
+  font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-titoli: "Space Grotesk", sans-serif;
+  --font-titoli: "Sofia Sans Extra Condensed", sans-serif;
   --font-testo: "Inter", sans-serif;
+
+  /* Pesi e spaziatura: si regolano solo qui */
+  --peso-titoli: 400;
+  --peso-sottotitoli: 500;      /* titoli delle card, del CV, valori dei contatti */
+  --peso-etichette: 600;        /* etichette piccole in maiuscolo */
+  --tracking-titoli: 0em;
 
   /* Colore d'accento: si cambia solo qui */
   --accento: #69b4c2;
-  --accento-chiaro: color-mix(in srgb, var(--accento) 15%, white);
+  --accento-chiaro: color-mix(in srgb, var(--accento) 15%, var(--sfondo));
   --su-accento: #121212;   /* testo sopra l'accento: resta scuro in tutti i casi */
 
   --nero: #121212;
@@ -47,58 +56,127 @@
   --grigio-meta: var(--grigio-testo);
   --sfondo: #f9f9f7;
 
-  --raggio: 25px;
+  /* Angoli: si regolano solo qui */
+  --raggio: 12px;               /* card, foto, riquadri */
+  --raggio-bottoni: 11px;      /* bottoni e header: a pillola */
+
   --ombra: 0 8px 24px hsla(220, 15%, 12%, 0.05);
   --ombra-hover: 0 8px 24px hsla(220, 15%, 12%, 0.1);
+
+  /* Larghezza del contenuto: la usano contenitori e header */
+  --larghezza-sito: 1320px;
+  --margine-sito: 2rem;
 }
 
-/* Colori registrati: l'accento sfuma al cambio tema,
-   gli altri cambiano di colpo (modalità palco istantanea) */
+/* Colori registrati: servono per farli sfumare quando cambiano */
 @property --accento       { syntax: "<color>"; inherits: true; initial-value: #69b4c2; }
 @property --sfondo        { syntax: "<color>"; inherits: true; initial-value: #f9f9f7; }
 @property --nero          { syntax: "<color>"; inherits: true; initial-value: #121212; }
 @property --grigio-testo  { syntax: "<color>"; inherits: true; initial-value: #5f6573; }
 @property --grigio-chiaro { syntax: "<color>"; inherits: true; initial-value: #e8e7e4; }
 
+/* Scorrendo fino ai contatti i colori sfumano;
+   con la foto di "Chi sono" cambiano di colpo */
 html {
+  transition:
+    --accento 0.5s ease,
+    --sfondo 0.5s ease,
+    --nero 0.5s ease,
+    --grigio-testo 0.5s ease,
+    --grigio-chiaro 0.5s ease;
+}
+
+html:has(.about-media:hover),
+html:has(.about-media:focus) {
   transition: --accento 0.5s ease;
 }
 
-/* Temi colore: si alternano cliccando l'asterisco.
-   Cambia solo l'accento: sfondo, testi e grigi restano fissi.
-   Contrasto del testo scuro su ogni accento: tra 7.7:1 e 10:1 (WCAG AA).
-   L'accento si usa SOLO come sfondo, mai come colore del testo. */
-html[data-tema="carta"]  { --accento: #f0b429; }
-html[data-tema="rosa"]   { --accento: #f28b9b; }
-html[data-tema="salvia"] { --accento: #9fcc5a; }
-html[data-tema="lilla"]  { --accento: #a99bf0; }
+/* Temi colore: si alternano cliccando l'asterisco e a ogni refresh si riparte dal tema base.
+   Ogni tema è una coppia di colori classica del graphic design.
+   Contrasti verificati (WCAG AA, minimo 4.5:1):
+   notte  testo 17:1 · grigio 7.9:1 · testo sull'accento 16:1
+   klein  testo 6.7:1 · grigio 5.6:1 · testo sull'accento 13:1
+   giallo testo 13:1 · grigio 8.6:1 · testo sull'accento 13:1
+   rosso  testo 6.7:1 · grigio 5.2:1 · testo sull'accento 6.7:1
+   bosco  testo 10:1  · grigio 6.9:1 · testo sull'accento 8:1 */
 
-/* Modalità palco: la foto live spegne le luci su tutto il sito.
+/* Nero e verde acido */
+html[data-tema="notte"] {
+  --sfondo: #121212;
+  --nero: #f5f5f2;
+  --grigio-testo: #a4a8b2;
+  --grigio-chiaro: #2a2a2a;
+  --accento: #d4ff3a;
+  --su-accento: #121212;
+}
+
+/* Blu Klein e giallo */
+html[data-tema="klein"] {
+  --sfondo: #1f3bff;
+  --nero: #ffffff;
+  --grigio-testo: #e6e9ff;
+  --grigio-chiaro: #172fd6;
+  --accento: #ffd400;
+  --su-accento: #121212;
+}
+
+/* Giallo e nero */
+html[data-tema="giallo"] {
+  --sfondo: #ffd400;
+  --nero: #121212;
+  --grigio-testo: #3d3500;
+  --grigio-chiaro: #f0c400;
+  --accento: #121212;
+  --su-accento: #ffd400;
+}
+
+/* Rosso e bianco */
+html[data-tema="rosso"] {
+  --sfondo: #b8141c;
+  --nero: #ffffff;
+  --grigio-testo: #ffdcd9;
+  --grigio-chiaro: #9c0f16;
+  --accento: #ffffff;
+  --su-accento: #b8141c;
+}
+
+/* Verde bosco e arancio */
+html[data-tema="bosco"] {
+  --sfondo: #0f3d2e;
+  --nero: #f3ecd8;
+  --grigio-testo: #b9c7b8;
+  --grigio-chiaro: #1b4d3c;
+  --accento: #ff8a5c;
+  --su-accento: #121212;
+}
+
+/* Modalità scura, in due casi:
+   - passando sulla foto di "Chi sono" (modalità palco)
+   - scorrendo fino a una sezione con data-buio (classe .buio aggiunta da tema.js)
    Contrasti: testo/sfondo 17:1, grigio/sfondo 7.8:1, grigio/grigio-chiaro 6:1.
    Il testo sopra l'accento usa --su-accento e resta scuro. */
 html:has(.about-media:hover),
-html:has(.about-media:focus) {
+html:has(.about-media:focus),
+html.buio {
   --sfondo: #121212;
   --nero: #f5f5f2;
   --grigio-testo: #a4a8b2;
   --grigio-chiaro: #2a2a2a;
 }
 
-/* Sul fondo scuro la sottolineatura resta sotto le lettere */
-html:has(.about-media:hover) mark,
-html:has(.about-media:focus) mark {
-  box-shadow: inset 0 -0.12em 0 var(--accento);
-}
-
 /* Immagini nere in PNG: invertite per non sparire */
 html:has(.about-media:hover) :is(#rotating-icon img, #logo-site),
-html:has(.about-media:focus) :is(#rotating-icon img, #logo-site) {
+html:has(.about-media:focus) :is(#rotating-icon img, #logo-site),
+html.buio :is(#rotating-icon img, #logo-site),
+html:is([data-tema="notte"], [data-tema="klein"], [data-tema="rosso"], [data-tema="bosco"]) :is(#rotating-icon img, #logo-site) {
   filter: invert(1);
 }
 
 /* Loghi clienti: il multiply sul nero li farebbe sparire */
 html:has(.about-media:hover) .logo-cella img,
-html:has(.about-media:focus) .logo-cella img {
+html:has(.about-media:focus) .logo-cella img,
+html.buio .logo-cella img,
+html:is([data-tema="notte"], [data-tema="klein"], [data-tema="rosso"], [data-tema="bosco"]) .logo-cella img {
   mix-blend-mode: normal;
   filter: grayscale(1) invert(1);
 }
@@ -116,18 +194,30 @@ body {
 
 h1,
 h2 {
-  font-size: clamp(3rem, 5vw, 3.5rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1em;
+  font-size: clamp(3.25rem, 6vw, 4.25rem);
+  font-weight: var(--peso-titoli);
+  line-height: 0.95;
+}
+
+h3, h4, h5,
+.card-title {
+  font-weight: var(--peso-sottotitoli);
+}
+
+/* Titoli: stessa spaziatura ovunque, decisa solo da --tracking-titoli */
+h1, h2, h3, h4, h5,
+.intro-title,
+#heading h2,
+#heading-cta h2 {
+  letter-spacing: var(--tracking-titoli);
 }
 
 p,
 a {
   font-family: var(--font-testo) !important;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
-  line-height: 1.4rem;
+  line-height: 1.2rem;
   text-decoration: none;
 }
 
@@ -145,8 +235,8 @@ h6 {
 mark {
   background: none;
   color: inherit;
-  box-shadow: inset 0 -0.4em 0 var(--accento);
-  padding: 0 0.1em;
+  box-shadow: none;
+  padding: 0;
 }
 
 hr {
@@ -177,17 +267,18 @@ dl {
 }
 
 .container {
-  max-width: 1320px;
+  max-width: var(--larghezza-sito);
   margin-top: 4rem;
   margin-bottom: 4rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: var(--margine-sito);
+  padding-right: var(--margine-sito);
 }
 
 
 /* 3. Header e menu
    ---------------------------------------------------------- */
 
+/* Header: barra fissa a tutta larghezza, con il contenuto allineato al sito */
 #top-bar {
   position: fixed;
   top: 0;
@@ -206,9 +297,9 @@ dl {
 
 #top-bar > .row {
   width: 100%;
-  max-width: 1320px;
+  max-width: var(--larghezza-sito);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--margine-sito);
 }
 
 #logo {
@@ -290,7 +381,7 @@ button,
   background-color: var(--nero);
   border-color: var(--nero);
   color: var(--sfondo);
-  border-radius: 999px;
+  border-radius: var(--raggio-bottoni);
   padding: 0.6rem 1.5rem;
   font-size: medium;
 }
@@ -321,49 +412,49 @@ button,
 /* 5. Intro, chi sono, CTA, pagine di testo
    ---------------------------------------------------------- */
 
-/* Titolo di apertura */
-.intro-title {
-  max-width: 20ch;
-  margin: 0 auto;
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-  text-align: center;
-  text-wrap: balance;
+/* Intro: titolo e sottotitolo a sinistra, toggle a destra centrato sul titolo */
+.intro-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
 }
 
-.intro-title mark {
+/* Il contenitore "sparisce": titolo e sottotitolo diventano celle della griglia */
+.intro-testo {
+  display: contents;
+}
+
+.intro-head .intro-title {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.intro-head .intro-sub {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.intro-head .toggle-lavori {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  margin: 0 !important;
+}
+
+/* Parola da cui escono i simboli di codice */
+.intro-title .code-burst {
   position: relative;
-  isolation: isolate;
   white-space: nowrap;
-  box-shadow: none;
-  text-decoration: none;
-}
-
-.intro-title mark::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.1em;   /* alza o abbassa la linea da qui */
-  height: 0.2em;
-  z-index: -1;
-  background: var(--accento);
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: sottolinea 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.4s forwards;
-}
-
-@keyframes sottolinea {
-  to { transform: scaleX(1); }
 }
 
 .intro-sub {
   max-width: 44ch;
-  margin: 1.75rem auto 0;
-  text-align: center;
-  font-size: 1.05rem;
+  margin: 2rem 0 0;
+  font-size: 0.8rem;
   line-height: 1.55;
+  text-align: left;
   color: var(--grigio-testo);
 }
 
@@ -397,7 +488,11 @@ button,
   }
 }
 
-/* Chi sono */
+/* Chi sono: foto e testo partono dalla stessa altezza */
+#about .row {
+  align-items: flex-start;
+}
+
 #heading {
   padding: 0 6% 0 0;
 }
@@ -467,13 +562,14 @@ button,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 #heading-cta h2 {
-  font-size: clamp(3rem, 5.5vw, 4.5rem);
-  text-wrap: balance;
+  margin: 0;
+  font-size: clamp(3.25rem, 6vw, 4.25rem);
+  line-height: 0.95;
 }
 
 #heading-cta a {
@@ -483,18 +579,15 @@ button,
   color: inherit;
 }
 
-#heading-cta a mark {
-  transition: box-shadow 0.35s ease;
+#heading-cta a:hover,
+#heading-cta a:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
 }
 
-#heading-cta a:hover mark,
-#heading-cta a:focus-visible mark {
-  box-shadow: inset 0 -1em 0 var(--accento);
-  color: var(--su-accento);
-}
-
-/* Pagine di solo testo (privacy) */
-.pagina-testo {
+/* Pagine di solo testo (privacy): righe non più lunghe di 70 caratteri */
+.pagina-testo > *:not(h1) {
   max-width: 70ch;
 }
 
@@ -505,14 +598,12 @@ button,
 .pagina-testo h2 {
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
+  font-size: 1.75rem;
 }
 
 .pagina-testo h3 {
   margin-top: 1.5rem;
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1.3rem;
 }
 
 .pagina-testo p,
@@ -580,8 +671,8 @@ button,
 
 .card-body h6 {
   width: fit-content;
-  padding: 10px;
-  border-radius: 40px;
+  padding: 10px 14px;
+  border-radius: 999px;
   background-color: var(--grigio-chiaro);
   color: var(--nero);
   font-size: 9px;
@@ -589,8 +680,8 @@ button,
 }
 
 .card-title {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.1;
 }
 
 .card-text {
@@ -602,6 +693,8 @@ button,
 /* Card lavori: stessa altezza, stesse proporzioni */
 #lavori .row {
   align-items: stretch;
+  --bs-gutter-x: 1.5rem;   /* spazio tra le colonne */
+  --bs-gutter-y: 1.5rem;   /* spazio tra le righe */
 }
 
 #lavori .row > [class*="col-"] > a,
@@ -657,7 +750,7 @@ button,
   grid-template-columns: 1fr 1fr;
   width: max-content;
   max-width: 100%;
-  margin: 2rem auto 3rem;
+  margin: 2rem 0 3rem;
   padding: 4px;
   border-radius: 999px;
   background: var(--grigio-chiaro);
@@ -704,40 +797,44 @@ button,
 }
 
 
-/* 7. Loghi clienti
+/* 7. Loghi clienti (dentro "Chi sono", sotto i bottoni)
    ---------------------------------------------------------- */
 
 #clienti {
-  max-width: 1100px;
-  margin: 7rem auto;
-  padding: 3rem 2rem;
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
   border-top: 1px solid var(--grigio-chiaro);
-  border-bottom: 1px solid var(--grigio-chiaro);
 }
 
 #clienti > h6 {
-  margin-bottom: 2.5rem;
-  text-align: center;
+  margin: 0 0 1.75rem;
   color: var(--grigio-testo);
 }
 
 #clienti-griglia {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem 2rem;
   align-items: center;
-  gap: 2.5rem 3.5rem;
 }
 
-/* --s nell'HTML regola la scala di ogni singolo logo */
+/* Ogni logo sta in un riquadro identico, allineato a sinistra:
+   i marchi compatti occupano tutta l'altezza, le scritte orizzontali tutta la larghezza */
+.logo-cella {
+  height: 64px;
+  width: 100%;
+}
+
 .logo-cella img {
   display: block;
-  height: calc(104px * var(--s, 1));
-  width: auto;
-  max-width: 260px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  object-position: left center;
+  transform: scale(var(--s, 1));   /* --s nell'HTML, solo per correggere un logo */
+  transform-origin: left center;
   filter: grayscale(1);
-  opacity: 0.55;
+  opacity: 0.6;
   mix-blend-mode: multiply;
   transition: opacity 0.25s ease;
 }
@@ -817,13 +914,14 @@ button,
   border-radius: 50%;
   text-align: center;
   background: var(--accento-chiaro);
-  color: var(--su-accento);
+  color: var(--nero);
   font-size: 20px;
   transition: all 0.3s;
 }
 
 #social ul li a:hover {
   background: var(--accento);
+  color: var(--su-accento);
   transform: rotate(360deg);
 }
 
@@ -837,7 +935,7 @@ button,
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20%;
+  border-radius: var(--raggio);
   background-color: var(--nero);
   color: var(--sfondo);
   font-size: 22px;
@@ -879,6 +977,7 @@ button,
   inset: -6px;
   border-radius: 50%;
   background: var(--prossimo, var(--accento));
+  box-shadow: 0 0 0 2px var(--nero);
   transform: scale(0.6);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -996,7 +1095,8 @@ button,
   background: transparent;
   box-shadow: none;
   font-family: var(--font-titoli);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 500;
   color: var(--nero);
   transition: box-shadow 0.2s ease;
 }
@@ -1011,9 +1111,9 @@ button,
   box-shadow: 0 2px 0 var(--accento);
 }
 
+/* Il messaggio ha la stessa dimensione degli altri campi */
 #contact-form textarea.form-control {
   min-height: 140px;
-  font-size: 1.25rem;
   resize: vertical;
 }
 
@@ -1023,7 +1123,7 @@ button,
   gap: 0.6rem;
   padding: 1rem 2rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--raggio-bottoni);
   background-color: var(--nero);
   color: var(--sfondo);
   font-size: 1.05rem;
@@ -1048,135 +1148,90 @@ button,
   text-decoration: underline;
 }
 
-/* Riquadro contatti: sempre in negativo rispetto alla pagina */
+/* Contatti a destra del form: stesso sistema di etichette e valori */
 #info-card {
   padding-bottom: 5%;
 }
 
 #info-card-box {
-  padding: 3rem !important;
+  padding: 0 !important;
   border: 0;
-  border-radius: var(--raggio) !important;
-  background-color: var(--nero) !important;
+  background: transparent !important;
   box-shadow: none !important;
-  color: var(--sfondo);
 }
 
 #info-card-box h6,
-#info-card-box a,
-#info-card-box span,
-#info-card-box .fw-semibold {
-  color: var(--sfondo) !important;
+#info-card-box hr {
+  display: none;
 }
 
-#info-card-box li,
-#info-card-box p,
+#info-contact {
+  margin: 0;
+  padding: 0 !important;
+}
+
+/* Il testo della voce ("E-mail", "Portfolio"…) fa da etichetta */
+#info-contact li,
 #info-card-box .text-muted {
-  color: color-mix(in srgb, var(--sfondo) 65%, transparent) !important;
+  display: block;
+  margin: 0 0 2rem !important;
+  padding: 0 0 1rem !important;
+  border-bottom: 1px solid var(--grigio-chiaro);
+  border-radius: 0;
+  background: transparent !important;
+  font-family: var(--font-testo) !important;
+  font-size: 0.78rem !important;
+  font-weight: var(--peso-etichette);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--grigio-testo) !important;
 }
 
-#info-card-box hr,
+#info-contact li br {
+  display: none;
+}
+
+/* Il valore: grande, nel font dei titoli, come il testo nei campi del form */
+#info-contact li a,
+#info-contact li span,
+#info-card-box .fw-semibold {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-titoli) !important;
+  font-size: 1.5rem !important;
+  font-weight: var(--peso-sottotitoli);
+  letter-spacing: 0;
+  line-height: 1.15;
+  text-transform: none;
+  color: var(--nero) !important;
+  overflow-wrap: anywhere;
+}
+
+/* "Disponibilità" diventa una voce come le altre */
 #info-card-box .border-top {
-  border-color: color-mix(in srgb, var(--sfondo) 15%, transparent) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+#info-card-box .text-muted {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0;
+}
+
+#info-card-box .d-flex {
+  display: block !important;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--grigio-chiaro);
 }
 
 .availability-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #198754;
+  display: none;
 }
 
-.pulse {
-  animation: pulseAnim 1.4s infinite ease-in-out;
-}
-
-
-/* 10. Pagina CV
-   ---------------------------------------------------------- */
-
-.curriculum {
-  padding-top: 1rem;
-}
-
-.curriculum h2 {
-  padding-top: 1rem;
-  font-size: clamp(2rem, 6vw, 2.1rem);
-  letter-spacing: -2px;
-}
-
-.curriculum h6 {
-  padding-bottom: 1rem;
-  font-size: 16px;
-  text-transform: none;
-  color: var(--nero);
-}
-
-.curriculum hr {
-  width: 10%;
-  height: 4px;
-  background-color: var(--accento);
-  opacity: 1;
-}
-
-.curriculum p {
-  padding-top: 1rem;
-}
-
-.container #heading-cv {
-  margin-bottom: 0 !important;
-}
-
-.info-column {
-  padding-right: 2rem;
-}
-
-.info-block {
-  margin-bottom: 2rem;
-}
-
-.cv-column h3 {
-  margin-top: 2rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.cv-column h4 {
-  margin-top: 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.cv-column h6 {
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--grigio-meta);
-}
-
-.job-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.job-title {
-  flex-grow: 1;
-  font-weight: 600;
-  color: var(--nero);
-}
-
-.job-year {
-  margin-left: auto;
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--grigio-meta);
-  white-space: nowrap;
-}
-
+/* Lista con i pallini: usata ancora nella pagina contatti */
 .dot-list {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
@@ -1193,29 +1248,175 @@ button,
   font-size: 13px;
 }
 
-#info-contact li {
-  display: block;
+
+/* 10. Pagina CV
+   ---------------------------------------------------------- */
+
+/* Intestazione: stesso linguaggio del titolo della home */
+.cv-title {
+  margin: 0.5rem 0 1.75rem;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.9;
+}
+
+.cv-intro {
+  max-width: 62ch;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.cv-download {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.cv-download .btn i {
+  margin-left: 0.4rem;
+}
+
+/* Etichette di sezione: piccole, in maiuscolo, con una linea sottile sotto */
+.cv-label {
   margin-bottom: 1.5rem;
-  padding: 0;
-  border-radius: 0;
-  background-color: transparent !important;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--grigio-chiaro);
+  color: var(--grigio-testo);
+}
+
+.cv-blocco {
+  margin-bottom: 3rem;
+}
+
+/* Contatti e lingue: etichetta piccola + valore grande, come nel form */
+.lista-dati {
+  display: block;
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
   text-align: left;
 }
 
-#info-contact li span {
-  font-size: 0.9rem;
+.lista-dati li {
+  display: block;
+  margin-bottom: 1.4rem;
+  font-family: var(--font-testo) !important;
+  font-size: 0.78rem;
+  font-weight: var(--peso-etichette);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grigio-testo);
+}
+
+.lista-dati li a,
+.lista-dati li span {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-titoli) !important;
+  font-size: 1.4rem;
+  font-weight: var(--peso-sottotitoli);
+  letter-spacing: 0;
+  line-height: 1.15;
+  text-transform: none;
+  color: var(--nero);
+  overflow-wrap: anywhere;
+}
+
+/* Competenze: gruppi con etichette a pillola, come nelle card */
+.cv-gruppo {
+  margin: 1.25rem 0 0.6rem;
+  font-size: 0.78rem;
+  font-weight: var(--peso-etichette);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cv-tag {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  width: auto;
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.cv-tag li {
+  display: block;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: var(--grigio-chiaro);
+  font-family: var(--font-testo);
+  font-size: 0.85rem;
   color: var(--nero);
 }
 
-#img-cv {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
+/* Colonna principale */
+.cv-sezione {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
 }
 
-#img-cv img {
-  width: 80%;
+.cv-sezione:not(:first-child) {
+  margin-top: 4rem;
+}
+
+/* Ogni esperienza: titolo e anni sulla stessa riga, luogo e punti sotto */
+.cv-voce {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--grigio-chiaro);
+}
+
+.cv-voce h3 {
+  margin: 0;
+  font-family: var(--font-titoli);
+  font-size: 1.7rem;
+  line-height: 1.1;
+}
+
+.cv-anni {
+  padding-top: 0.4rem;
+  font-family: var(--font-testo);
+  font-size: 0.85rem;
+  color: var(--grigio-testo);
+  white-space: nowrap;
+}
+
+.cv-dove {
+  grid-column: 1 / -1;
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+}
+
+.cv-punti {
+  grid-column: 1 / -1;
+  display: block;
+  width: auto;
+  margin: 0.9rem 0 0;
+  padding: 0 !important;
+  list-style: none;
+  text-align: left;
+}
+
+.cv-punti li {
+  display: block;
+  position: relative;
+  margin-bottom: 0.35rem;
+  padding-left: 1.1rem;
+  font-family: var(--font-testo);
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: var(--nero);
+}
+
+.cv-punti li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--grigio-testo);
 }
 
 
@@ -1232,16 +1433,6 @@ button,
   transform: translateY(-8px);
 }
 
-#rotate {
-  display: inline-block;
-  transform-origin: center center;
-  transition: transform 6s linear;
-}
-
-#rotate:hover {
-  transform: rotate(360deg);
-}
-
 .slide-up {
   opacity: 0;
   transform: translateY(20px);
@@ -1253,6 +1444,10 @@ button,
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.pulse {
+  animation: pulseAnim 1.4s infinite ease-in-out;
 }
 
 @keyframes pulseAnim {
@@ -1268,14 +1463,8 @@ button,
   .about-media .about-hover,
   #lavori .toggle-lavori::before,
   #rotating-icon img,
-  #rotating-icon::before,
-  #heading-cta a mark {
+  #rotating-icon::before {
     transition: none;
-  }
-
-  .intro-title mark::after {
-    animation: none;
-    transform: scaleX(1);
   }
 
   .slide-up {
@@ -1323,7 +1512,7 @@ button,
     display: none;
   }
 
-  /* Menu a schermo pieno */
+  /* Menu a schermo pieno sotto la barra */
   #menu {
     position: fixed;
     top: 80px;
@@ -1368,9 +1557,10 @@ button,
 
   .menu li a {
     font-family: var(--font-titoli) !important;
-    font-size: 2.5rem;
-    font-weight: 500;
-    letter-spacing: -0.03em;
+    font-size: 3rem;
+    font-weight: var(--peso-titoli);
+    letter-spacing: var(--tracking-titoli);
+    line-height: 1;
     color: var(--sfondo);
   }
 
@@ -1398,15 +1588,25 @@ button,
     color: var(--su-accento);
   }
 
-  /* Intro */
+  /* Intro: titolo, sottotitolo e toggle uno sotto l'altro */
   .intro-title {
-    font-size: 11vw;
+    font-size: 14vw;
+  }
+
+  .intro-head {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-head .toggle-lavori {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+    margin-top: 2rem !important;
   }
 
   /* Toggle */
   #lavori .toggle-lavori {
     width: 100%;
-    margin: 2rem 0 2.5rem;
     padding: 5px;
   }
 
@@ -1450,8 +1650,12 @@ button,
 
   /* CTA */
   #heading-cta h2 {
-    font-size: 9vw;
-    line-height: 1.05;
+    font-size: 14vw;
+  }
+
+  /* Clienti */
+  #clienti {
+    margin-top: 2.5rem;
   }
 
   /* Footer: una colonna */
@@ -1486,77 +1690,41 @@ button,
     padding-right: 0;
   }
 
-  #info-card-box {
-    padding: 2rem !important;
-  }
-
-  /* CV */
-  .curriculum {
-    padding-top: 0;
-  }
-
-  .info-block {
-    margin-bottom: 1rem;
-  }
-
-  .cv-column h3 {
-    margin-top: 1.5rem;
-    font-size: 1.05rem;
-  }
-
-  .job-heading {
-    flex-direction: column;
-    align-items: start;
-    gap: 0.2rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .job-year {
-    margin-left: 0;
-    font-size: 0.85rem;
-  }
-
-  .cv-column h4 {
-    margin-top: 0;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--grigio-testo);
-  }
-
   .dot-list li {
     margin-bottom: 1rem;
     padding: 15px 20px;
+  }
+
+  /* CV: prima esperienza e formazione, poi la colonna laterale */
+  .cv-title {
+    font-size: 17vw;
+  }
+
+  .cv-laterale {
+    order: 2;
+    margin-top: 3rem;
+  }
+
+  .cv-principale {
+    order: 1;
+  }
+
+  .cv-voce {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-anni {
+    padding-top: 0.2rem;
   }
 }
 
 /* Telefono */
 @media (max-width: 575px) {
-  #clienti {
-    margin: 4rem auto;
-    padding: 2.5rem 0;
-  }
-
   #clienti-griglia {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.25rem 1rem;
-    justify-items: center;
+    gap: 2rem 1.25rem;
   }
 
   .logo-cella {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .logo-cella img {
-    height: calc(64px * max(var(--s, 1), 0.85));
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  #img-cv {
-    display: none;
+    height: 48px;
   }
 }

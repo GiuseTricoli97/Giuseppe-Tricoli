@@ -9,30 +9,29 @@
       content="Giuseppe Tricoli, grafico e web developer a Torino. Identità visive, poster, contenuti social e siti WordPress e WooCommerce."
     />
     <link rel="icon" href="img/favicon.png?v=3" />
-<link rel="canonical" href="https://giuseppetricoli.it/" />
+    <link rel="canonical" href="https://giuseppetricoli.it/" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
-    <script>
-      try { document.documentElement.setAttribute("data-tema", localStorage.getItem("tema") || "base"); } catch (e) {}
-    </script>
+
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Giuseppe Tricoli",
-  "jobTitle": "Graphic Designer e Web Developer",
-  "url": "https://giuseppetricoli.it",
-  "email": "mailto:tricoli.giuseppe97@gmail.com",
-  "address": { "@type": "PostalAddress", "addressLocality": "Torino", "addressCountry": "IT" },
-  "sameAs": [
-    "https://www.behance.net/gtricoli",
-    "https://www.linkedin.com/in/giuseppe-tricoli/",
-    "https://github.com/GiuseTricoli97",
-    "https://www.instagram.com/giusismyname/"
-  ]
-}
-</script>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Giuseppe Tricoli",
+        "jobTitle": "Graphic Designer e Web Developer",
+        "url": "https://giuseppetricoli.it",
+        "email": "mailto:tricoli.giuseppe97@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Torino", "addressCountry": "IT" },
+        "sameAs": [
+          "https://www.behance.net/gtricoli",
+          "https://www.linkedin.com/in/giuseppe-tricoli/",
+          "https://github.com/GiuseTricoli97",
+          "https://www.instagram.com/giusismyname/"
+        ]
+      }
+    </script>
   </head>
 
   <body>
@@ -54,86 +53,44 @@
           <ul class="menu">
             <li class="float-hover"><a href="index.html">Home</a></li>
             <li class="float-hover"><a href="Cv.html">CV</a></li>
-            <li class="float-hover"><a href="contact.html">Contattami</a></li>
+            <li class="float-hover"><a href="#contatti">Contattami</a></li>
           </ul>
         </nav>
 
         <div class="col-6 col-md-4" id="contact">
-          <a href="contact.html" class="btn btn-primary btn-lg">Contattami</a>
+          <a href="#contatti" class="btn btn-primary btn-lg">Contattami</a>
         </div>
       </div>
     </header>
 
     <!-- ===== INTRO + LAVORI ===== -->
     <section class="container" id="lavori">
-      <h1 class="intro-title">
-  Ciao! Sono Giuseppe, grafico e <mark class="code-burst">web developer.</mark>
-</h1>
-<p class="intro-sub">
-  Identità visive, poster e siti web per festival, locali e piccole aziende.
-  Scegli da dove iniziare.
-</p>
-      <ul class="nav nav-pills toggle-lavori" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-grafica" type="button" role="tab">Graphic design</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-web" type="button" role="tab">Web development</button>
-        </li>
-      </ul>
+
+      <!-- Titolo a sinistra, toggle a destra -->
+      <div class="intro-head">
+        <div class="intro-testo">
+          <h1 class="intro-title">
+            <b>Sono Giuseppe</b>, graphic <br />designer e <span class="code-burst">web developer.</span>
+          </h1>
+          <p class="intro-sub">
+            Identità visive, poster e siti web per festival, locali e PMI.
+          </p>
+        </div>
+
+        <ul class="nav nav-pills toggle-lavori" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-grafica" type="button" role="tab">Graphic design</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-web" type="button" role="tab">Web development</button>
+          </li>
+        </ul>
+      </div>
 
       <div class="tab-content">
         <!-- GRAFICA -->
         <div class="tab-pane fade show active" id="tab-grafica" role="tabpanel">
           <div class="row g-3">
-
-            <div class="col-md-6 col-lg-4">
-              <a href="https://www.behance.net/gallery/256257297/TLT-e-sPAZIO211-Identita-visiva-20232024" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-                <div class="card">
-                  <div class="card-media">
-                    <img src="img/spazio211posters-scaled.webp" class="card-img-top" alt="Poster di TILT e sPAZIO211 Open Air" />
-                    <img src="img/hover/tilt.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-                  </div>
-                  <div class="card-body">
-                    <h6>Identità visiva e social</h6>
-                    <h5 class="card-title">T!LT/sPAZIO211</h5>
-                    <p class="card-text">Comunicazione di TILT e della stagione Open Air, 2023–2024</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <a href="https://www.behance.net/gallery/256256989/CHAMOISic-XV-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-                <div class="card">
-                  <div class="card-media">
-                    <img src="img/chamoisic-xv.png" class="card-img-top" alt="Manifesto di CHAMOISic XV" />
-                    <img src="img/hover/chamoisic-xv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-                  </div>
-                  <div class="card-body">
-                    <h6>Identità visiva</h6>
-                    <h5 class="card-title">CHAMOISic XV</h5>
-                    <p class="card-text">Identità dell'edizione 2024 del festival, in Valle d'Aosta</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <a href="https://www.behance.net/gallery/186235793/CHAMOISic-XIV-Ed-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-                <div class="card">
-                  <div class="card-media">
-                    <img src="img/chamoisic.png" class="card-img-top" alt="Identità visiva di CHAMOISic XIV" />
-                    <img src="img/hover/chamoisic-xiv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
-                  </div>
-                  <div class="card-body">
-                    <h6>Identità visiva</h6>
-                    <h5 class="card-title">CHAMOISic XIV</h5>
-                    <p class="card-text">Edizione 2023: otto comuni, quindici concerti a ingresso gratuito</p>
-                  </div>
-                </div>
-              </a>
-            </div>
 
             <div class="col-md-6 col-lg-4">
               <a href="https://www.behance.net/gallery/256257743/Copertine-poster-e-merch-per-band" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
@@ -183,6 +140,54 @@
               </a>
             </div>
 
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/256257297/TLT-e-sPAZIO211-Identita-visiva-20232024" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/spazio211posters-scaled.webp" class="card-img-top" alt="Poster di TILT e sPAZIO211 Open Air" />
+                    <img src="img/hover/tilt-1.png" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Identità visiva e social</h6>
+                    <h5 class="card-title">T!LT/sPAZIO211</h5>
+                    <p class="card-text">Comunicazione di TILT e della stagione Open Air, 2023–2024</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/256256989/CHAMOISic-XV-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/chamoisic-xv.png" class="card-img-top" alt="Manifesto di CHAMOISic XV" />
+                    <img src="img/hover/chamoisic-xv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Identità visiva</h6>
+                    <h5 class="card-title">CHAMOISic XV</h5>
+                    <p class="card-text">Identità dell'edizione 2024 del festival, in Valle d'Aosta</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <a href="https://www.behance.net/gallery/186235793/CHAMOISic-XIV-Ed-Official-Brand-Identity" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
+                <div class="card">
+                  <div class="card-media">
+                    <img src="img/chamoisic.png" class="card-img-top" alt="Identità visiva di CHAMOISic XIV" />
+                    <img src="img/hover/chamoisic-xiv.webp" class="card-img-top card-img-hover" alt="" aria-hidden="true" loading="lazy" />
+                  </div>
+                  <div class="card-body">
+                    <h6>Identità visiva</h6>
+                    <h5 class="card-title">CHAMOISic XIV</h5>
+                    <p class="card-text">Edizione 2023: otto comuni, quindici concerti a ingresso gratuito</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
           </div>
 
           <div class="mt-4 text-center">
@@ -217,32 +222,6 @@
                     <h6>WordPress</h6>
                     <h5 class="card-title">sPAZIO211</h5>
                     <p class="card-text">Nuovo sito al posto di quello del 2005: storia del club, blog, eventi con link diretto all'acquisto dei biglietti</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <a href="https://www.islandmusicafe.it/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-                <div class="card">
-                  <img src="img/islandmusicafewhite-1.png" class="card-img-top" alt="Sito web di Island Music Cafè" />
-                  <div class="card-body">
-                    <h6>WordPress</h6>
-                    <h5 class="card-title">Island Music Cafè</h5>
-                    <p class="card-text">Sito progettato da zero per un music pub: menu, eventi e prenotazione del tavolo</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-              <a href="https://www.bluemamarecords.com/" target="_blank" rel="noopener" class="text-reset text-decoration-none d-block">
-                <div class="card">
-                  <img src="img/bluemamawhite-20.png" class="card-img-top" alt="Sito web di Blue Mama Records" />
-                  <div class="card-body">
-                    <h6>WordPress</h6>
-                    <h5 class="card-title">Blue Mama Records</h5>
-                    <p class="card-text">Sito progettato da zero per un'etichetta blues, funk e soul</p>
                   </div>
                 </div>
               </a>
@@ -284,77 +263,73 @@
       <div class="row g-0">
         <div class="col-lg-6 order-2 order-lg-1">
           <div class="card bg-light text-white" id="card-about">
-  <div class="about-media" tabindex="0">
-    <img src="img/giuseppe-tricoli.png" class="card-img" alt="Foto di Giuseppe Tricoli" />
-    <img src="img/live.jpg" class="card-img about-hover" alt="Giuseppe Tricoli che suona la chitarra dal vivo" loading="lazy" />
-  </div>
-</div>
+            <div class="about-media" tabindex="0">
+              <img src="img/giuseppe-tricoli.png" class="card-img" alt="Foto di Giuseppe Tricoli" />
+              <img src="img/live.jpg" class="card-img about-hover" alt="Giuseppe Tricoli che suona la chitarra dal vivo" loading="lazy" />
+            </div>
+          </div>
         </div>
 
         <div class="col-lg-6 order-1 order-lg-2" id="heading">
-          <h6>Chi sono</h6>
-          <h2>Grafica e siti, <mark>spesso per gli stessi clienti.</mark></h2>
+          <h6>Graphic designer &amp; web developer | Torino</h6>
+          <h2>Chi sono, in breve</h2>
           <p>
             Dal 2020 seguo progetti di grafica e di sviluppo web: festival, locali, piccole aziende e
             realtà culturali, soprattutto in Piemonte. Ho curato la comunicazione di T!LT per sPAZIO211
-            e l'identità di due edizioni di CHAMOISic. Sul web ho realizzato oltre 30 siti tra siti vetrina ed e-commerce.
-            So gestire un sito con Wordpress + Elementor, o con WooCommerce o Prestashop, inserire integrazioni come Stripe o creare widget PHP custom.
-            Realizzo prototipi con Figma, dall'UI al sito web completo
-            Ho anche competenze nella gestione di campagne Meta Ads, e questo mi aiuta a costruire landing page pensando a chi
-            ci arriverà da un annuncio.
+            e l'identità di due edizioni di CHAMOISic. Sul web ho realizzato oltre 30 siti tra siti vetrina
+            ed e-commerce. So gestire un sito con WordPress ed Elementor, WooCommerce o PrestaShop, inserire
+            integrazioni come Stripe o creare widget PHP custom. Realizzo prototipi con Figma, dall'interfaccia
+            al sito web completo. Ho anche competenze nella gestione di campagne Meta Ads, e questo mi aiuta
+            a costruire landing page pensando a chi ci arriverà da un annuncio.
             <br /><br />
             Quando non lavoro sono il chitarrista di una band post-hardcore di Torino. È anche il motivo per
             cui buona parte dei miei lavori grafici <b>parla di musica.</b>
           </p>
           <a href="Cv.html" class="btn btn-primary btn-lg">Leggi il CV</a>
-          <a href="contact.html" class="btn btn-primary btn-lg" id="cta">Scrivimi</a>
+          <a href="#contatti" class="btn btn-primary btn-lg" id="cta">Scrivimi</a>
+
+          <!-- Clienti: sotto il testo di "Chi sono" -->
+          <div id="clienti">
+            <h6>Ho lavorato con</h6>
+            <div id="clienti-griglia">
+              <div class="logo-cella"><img src="img/loghi/spazio211.png" alt="sPAZIO211" /></div>
+              <div class="logo-cella"><img src="img/loghi/chamoisic.png" alt="CHAMOISic" /></div>
+              <div class="logo-cella"><img src="img/loghi/premio-buscaglione.png" alt="Premio Buscaglione" /></div>
+              <div class="logo-cella"><img src="img/loghi/pagella.png" alt="Pagella Non Solo Rock" /></div>
+              <div class="logo-cella"><img src="img/loghi/casaradicci.png" alt="Casa Radicci" /></div>
+              <div class="logo-cella"><img src="img/loghi/abitadeco.png" alt="Abita Deco" /></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== CLIENTI ===== -->
-    <section class="container" id="clienti">
-      <h6>Ho lavorato con</h6>
-      <div id="clienti-griglia">
-        <div class="logo-cella" style="--s: 1.2"><img src="img/loghi/spazio211.png" alt="sPAZIO211" /></div>
-        <div class="logo-cella" style="--s: 0.55"><img src="img/loghi/chamoisic.png" alt="CHAMOISic" /></div>
-        <div class="logo-cella" style="--s: 0.5"><img src="img/loghi/premio-buscaglione.png" alt="Premio Buscaglione" /></div>
-        <div class="logo-cella" style="--s: 0.6"><img src="img/loghi/pagella.png" alt="Pagella Non Solo Rock" /></div>
-        <div class="logo-cella" style="--s: 1"><img src="img/loghi/casaradicci.png" alt="Casa Radicci" /></div>
-        <div class="logo-cella" style="--s: 0.6"><img src="img/loghi/abitadeco.png" alt="Abita Deco" /></div>
-      </div>
-    </section>
-
     <!-- ===== CTA ===== -->
-    <section class="container slide-up" id="heading-cta">
+    <section class="container" id="heading-cta">
       <h2>
-        Cerchi un grafico o un developer?
-        <a href="contact.html"><mark>Scrivimi.</mark></a>
+        Cerchi un grafico <br />o un web developer? <br /><a href="#contatti"><b>Scrivimi.</b></a>
       </h2>
     </section>
 
-       <!-- ===== CONTATTI ===== -->
-    <section class="container slide-up" id="contatti">
-    
- 
-
+    <!-- ===== CONTATTI ===== -->
+    <section class="container" id="contatti" data-buio>
       <div class="row g-4 align-items-start">
         <!-- Form -->
         <div class="col-lg-8" id="form-container">
           <form id="contact-form">
             <label class="form-label" for="nome">Nome</label>
             <div class="mb-4">
-              <input type="text" id="nome" name="user_name" class="form-control" autocomplete="name" required />
+              <input type="text" id="nome" name="user_name" class="form-control" autocomplete="name" placeholder="Come ti chiami" required />
             </div>
 
             <label class="form-label" for="email">Indirizzo email</label>
             <div class="mb-4">
-              <input type="email" id="email" name="user_email" class="form-control" autocomplete="email" required />
+              <input type="email" id="email" name="user_email" class="form-control" autocomplete="email" placeholder="nome@esempio.it" required />
             </div>
 
             <label class="form-label" for="messaggio">Raccontami la tua idea</label>
             <div class="mb-4">
-              <textarea id="messaggio" name="message" class="form-control" rows="5" required></textarea>
+              <textarea id="messaggio" name="message" class="form-control" rows="5" placeholder="Scrivi il tuo messaggio" required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary mb-4" id="send-button">
@@ -362,8 +337,8 @@
             </button>
 
             <p class="nota-form">
-  Uso i tuoi dati solo per risponderti. <a href="privacy.html">Informativa privacy</a>
-</p>
+              Uso i tuoi dati solo per risponderti. <a href="privacy.html">Informativa privacy</a>
+            </p>
           </form>
 
           <div id="success-message" role="status" style="display: none; margin-top: 20px">
@@ -375,33 +350,21 @@
 
         <!-- Info -->
         <div class="col-lg-4" id="info-card">
-          <div class="bg-white rounded-3 p-4 shadow-sm" id="info-card-box">
-            <section class="info-block">
-              <h6>Contatti</h6>
-              <hr />
-              <ul class="dot-list" id="info-contact">
-                <li>
-                  E-mail<br />
-                  <a href="mailto:tricoli.giuseppe97@gmail.com">tricoli.giuseppe97@gmail.com</a>
-                </li>
-                <li>
-                  Portfolio<br />
-                  <a href="https://www.behance.net/gtricoli" target="_blank" rel="noopener">behance.net/gtricoli</a>
-                </li>
-                <li>
-                  Località<br />
-                  <span>Torino, Italia</span>
-                </li>
-              </ul>
-            </section>
-
-            <div class="pt-4 border-top mt-4">
-              <p class="text-muted small">Disponibilità</p>
-              <div class="d-flex align-items-center gap-2">
-                <span class="availability-dot pulse"></span>
-                <span class="small fw-semibold">Disponibile per nuovi progetti</span>
-              </div>
-            </div>
+          <div id="info-card-box">
+            <ul class="dot-list" id="info-contact">
+              <li>
+                E-mail<br />
+                <a href="mailto:tricoli.giuseppe97@gmail.com">tricoli.giuseppe97@gmail.com</a>
+              </li>
+              <li>
+                Portfolio<br />
+                <a href="https://www.behance.net/gtricoli" target="_blank" rel="noopener">behance.net/gtricoli</a>
+              </li>
+              <li>
+                Città<br />
+                <span>Torino, Italia</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -419,8 +382,7 @@
         <h6>Navigazione</h6>
         <a href="index.html" class="float-hover">Home</a>
         <a href="Cv.html" class="float-hover">CV</a>
-      
-        <a href="contact.html" class="float-hover">Contattami</a>
+        <a href="#contatti" class="float-hover">Contattami</a>
       </nav>
 
       <div id="social">
@@ -433,58 +395,64 @@
         </ul>
       </div>
     </footer>
-<div class="container" id="colophon">
-  <p>© 2026 Giuseppe Tricoli · P.IVA 12875540010</p>
-  <p>
-    Scritto in HTML e CSS, con un po' di Bootstrap. 
-    
-  </p>
-</div>
+
+    <div class="container" id="colophon">
+      <p>© 2026 Giuseppe Tricoli | P.IVA 12875540010 | <a href="privacy.html">Privacy</a></p>
+      <p>Scritto in HTML e CSS, con un po' di Bootstrap.</p>
+    </div>
 
     <a href="#top" id="scrollTopBtn" class="float-hover" aria-label="Torna su">↑</a>
     <button type="button" id="rotating-icon" data-cambia-tema aria-label="Cambia i colori del sito">
-  <img src="img/spin.png" alt="" />
-  <span class="tema-hint" aria-hidden="true">Cambia colori</span>
-</button>
+      <img src="img/spin.png" alt="" />
+      <span class="tema-hint" aria-hidden="true">Cambia colori</span>
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="dist/js/tema.js"></script>
-    <script src="dist/js/simboli.js"></script>  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script> <script>
-      emailjs.init("BSYOcQFW11VEdVScG");
+    <script src="dist/js/simboli.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        var form = document.getElementById("contact-form");
+        if (!form || typeof emailjs === "undefined") return;
 
-      document.getElementById("contact-form").addEventListener("submit", function (e) {
-        e.preventDefault();
+        emailjs.init("BSYOcQFW11VEdVScG");
 
-        const form = this;
-        const button = document.getElementById("send-button");
-        const successBox = document.getElementById("success-message");
-        const testoOriginale = button.innerHTML;
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
 
-        button.innerText = "Invio...";
-        button.disabled = true;
+          var button = document.getElementById("send-button");
+          var successBox = document.getElementById("success-message");
+          var testoOriginale = button.innerHTML;
 
-        emailjs
-          .sendForm("service_7z1hpsi", "template_045n0hc", form)
-          .then(() => {
-            // Risposta automatica a chi scrive
-            return emailjs.sendForm("service_7z1hpsi", "template_ylahpzx", form);
-          })
-          .then(() => {
-            form.reset();
-            successBox.style.display = "block";
-            button.innerText = "Inviato!";
-            setTimeout(() => {
-              successBox.style.display = "none";
-              button.innerHTML = testoOriginale;
+          button.innerText = "Invio...";
+          button.disabled = true;
+
+          emailjs
+            .sendForm("service_7z1hpsi", "template_045n0hc", form)
+            .then(function () {
+              // Conferma automatica a chi scrive: se fallisce non blocca niente
+              emailjs
+                .sendForm("service_7z1hpsi", "template_ylahpzx", form)
+                .catch(function (err) { console.warn("Risposta automatica non inviata:", err); });
+
+              form.reset();
+              if (successBox) successBox.style.display = "block";
+              button.innerText = "Inviato!";
+
+              setTimeout(function () {
+                if (successBox) successBox.style.display = "none";
+                button.innerHTML = testoOriginale;
+                button.disabled = false;
+              }, 4000);
+            })
+            .catch(function (error) {
+              console.error("Errore EmailJS:", error);
+              button.innerText = "Errore, riprova o scrivimi via mail";
               button.disabled = false;
-            }, 4000);
-          })
-          .catch((error) => {
-            console.error("Errore EmailJS:", error);
-            button.innerText = "Errore, riprova o scrivimi via mail";
-            button.disabled = false;
-          });
-      });
+            });
+        });
+      })();
     </script>
   </body>
 </html>
