@@ -70,11 +70,8 @@
       <div class="intro-head">
         <div class="intro-testo">
           <h1 class="intro-title">
-            <b>Sono Giuseppe</b>, graphic <br />designer e <span class="code-burst">web developer.</span>
+            <b>Sono Giuseppe</b>, graphic <br class="solo-desktop" />designer e <span class="code-burst">web developer.</span>
           </h1>
-          <p class="intro-sub">
-            Identità visive, poster e siti web per festival, locali e PMI.
-          </p>
         </div>
 
         <ul class="nav nav-pills toggle-lavori" role="tablist">
@@ -190,7 +187,7 @@
 
           </div>
 
-          <div class="mt-4 text-center">
+          <div class="mt-4 text-start text-md-center">
             <a href="https://www.behance.net/gtricoli" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
               Altri lavori su Behance&nbsp;<i class="fa fa-behance" aria-hidden="true"></i>
             </a>
@@ -261,7 +258,8 @@
     <!-- ===== CHI SONO ===== -->
     <section class="container" id="about">
       <div class="row g-0">
-        <div class="col-lg-6 order-2 order-lg-1">
+        <!-- Foto: a sinistra su desktop, sopra su mobile -->
+        <div class="col-lg-6">
           <div class="card bg-light text-white" id="card-about">
             <div class="about-media" tabindex="0">
               <img src="img/giuseppe-tricoli.png" class="card-img" alt="Foto di Giuseppe Tricoli" />
@@ -270,7 +268,8 @@
           </div>
         </div>
 
-        <div class="col-lg-6 order-1 order-lg-2" id="heading">
+        <!-- Testo e loghi -->
+        <div class="col-lg-6" id="heading">
           <h6>Graphic designer &amp; web developer | Torino</h6>
           <h2>Chi sono, in breve</h2>
           <p>
@@ -294,7 +293,6 @@
             <div id="clienti-griglia">
               <div class="logo-cella"><img src="img/loghi/spazio211.png" alt="sPAZIO211" /></div>
               <div class="logo-cella"><img src="img/loghi/chamoisic.png" alt="CHAMOISic" /></div>
-              <div class="logo-cella"><img src="img/loghi/premio-buscaglione.png" alt="Premio Buscaglione" /></div>
               <div class="logo-cella"><img src="img/loghi/pagella.png" alt="Pagella Non Solo Rock" /></div>
               <div class="logo-cella"><img src="img/loghi/casaradicci.png" alt="Casa Radicci" /></div>
               <div class="logo-cella"><img src="img/loghi/abitadeco.png" alt="Abita Deco" /></div>
@@ -307,12 +305,12 @@
     <!-- ===== CTA ===== -->
     <section class="container" id="heading-cta">
       <h2>
-        Cerchi un grafico <br />o un web developer? <br /><a href="#contatti"><b>Scrivimi.</b></a>
+        Cerchi un grafico <br class="solo-desktop" />o un web developer? <br /><a href="#contatti"><b>Scrivimi.</b></a>
       </h2>
     </section>
 
     <!-- ===== CONTATTI ===== -->
-    <section class="container" id="contatti" data-buio>
+    <section class="container" id="contatti">
       <div class="row g-4 align-items-start">
         <!-- Form -->
         <div class="col-lg-8" id="form-container">
@@ -402,9 +400,9 @@
     </div>
 
     <a href="#top" id="scrollTopBtn" class="float-hover" aria-label="Torna su">↑</a>
-    <button type="button" id="rotating-icon" data-cambia-tema aria-label="Cambia i colori del sito">
+    <button type="button" id="rotating-icon" data-cambia-tema aria-label="Passa alla modalità scura">
       <img src="img/spin.png" alt="" />
-      <span class="tema-hint" aria-hidden="true">Cambia colori</span>
+      <span class="tema-hint" aria-hidden="true">Modalità scura</span>
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

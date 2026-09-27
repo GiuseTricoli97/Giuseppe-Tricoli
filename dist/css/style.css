@@ -1,6 +1,6 @@
 /* ==========================================================
    Giuseppe Tricoli — portfolio
-   1. Font e variabili (temi colore, modalità scura)
+   1. Font e variabili (modalità scura)
    2. Base
    3. Header e menu
    4. Pulsanti
@@ -58,7 +58,7 @@
 
   /* Angoli: si regolano solo qui */
   --raggio: 12px;               /* card, foto, riquadri */
-  --raggio-bottoni: 11px;      /* bottoni e header: a pillola */
+  --raggio-bottoni: 11px;       /* bottoni */
 
   --ombra: 0 8px 24px hsla(220, 15%, 12%, 0.05);
   --ombra-hover: 0 8px 24px hsla(220, 15%, 12%, 0.1);
@@ -75,8 +75,7 @@
 @property --grigio-testo  { syntax: "<color>"; inherits: true; initial-value: #5f6573; }
 @property --grigio-chiaro { syntax: "<color>"; inherits: true; initial-value: #e8e7e4; }
 
-/* Scorrendo fino ai contatti i colori sfumano;
-   con la foto di "Chi sono" cambiano di colpo */
+/* Passando da chiaro a scuro i colori sfumano */
 html {
   transition:
     --accento 0.5s ease,
@@ -86,78 +85,11 @@ html {
     --grigio-chiaro 0.5s ease;
 }
 
-html:has(.about-media:hover),
-html:has(.about-media:focus) {
-  transition: --accento 0.5s ease;
-}
-
-/* Temi colore: si alternano cliccando l'asterisco e a ogni refresh si riparte dal tema base.
-   Ogni tema è una coppia di colori classica del graphic design.
-   Contrasti verificati (WCAG AA, minimo 4.5:1):
-   notte  testo 17:1 · grigio 7.9:1 · testo sull'accento 16:1
-   klein  testo 6.7:1 · grigio 5.6:1 · testo sull'accento 13:1
-   giallo testo 13:1 · grigio 8.6:1 · testo sull'accento 13:1
-   rosso  testo 6.7:1 · grigio 5.2:1 · testo sull'accento 6.7:1
-   bosco  testo 10:1  · grigio 6.9:1 · testo sull'accento 8:1 */
-
-/* Nero e verde acido */
-html[data-tema="notte"] {
-  --sfondo: #121212;
-  --nero: #f5f5f2;
-  --grigio-testo: #a4a8b2;
-  --grigio-chiaro: #2a2a2a;
-  --accento: #d4ff3a;
-  --su-accento: #121212;
-}
-
-/* Blu Klein e giallo */
-html[data-tema="klein"] {
-  --sfondo: #1f3bff;
-  --nero: #ffffff;
-  --grigio-testo: #e6e9ff;
-  --grigio-chiaro: #172fd6;
-  --accento: #ffd400;
-  --su-accento: #121212;
-}
-
-/* Giallo e nero */
-html[data-tema="giallo"] {
-  --sfondo: #ffd400;
-  --nero: #121212;
-  --grigio-testo: #3d3500;
-  --grigio-chiaro: #f0c400;
-  --accento: #121212;
-  --su-accento: #ffd400;
-}
-
-/* Rosso e bianco */
-html[data-tema="rosso"] {
-  --sfondo: #b8141c;
-  --nero: #ffffff;
-  --grigio-testo: #ffdcd9;
-  --grigio-chiaro: #9c0f16;
-  --accento: #ffffff;
-  --su-accento: #b8141c;
-}
-
-/* Verde bosco e arancio */
-html[data-tema="bosco"] {
-  --sfondo: #0f3d2e;
-  --nero: #f3ecd8;
-  --grigio-testo: #b9c7b8;
-  --grigio-chiaro: #1b4d3c;
-  --accento: #ff8a5c;
-  --su-accento: #121212;
-}
-
-/* Modalità scura, in due casi:
-   - passando sulla foto di "Chi sono" (modalità palco)
-   - scorrendo fino a una sezione con data-buio (classe .buio aggiunta da tema.js)
+/* Modalità scura: si attiva solo cliccando l'asterisco in basso a sinistra
+   (classe .scuro aggiunta da tema.js).
    Contrasti: testo/sfondo 17:1, grigio/sfondo 7.8:1, grigio/grigio-chiaro 6:1.
    Il testo sopra l'accento usa --su-accento e resta scuro. */
-html:has(.about-media:hover),
-html:has(.about-media:focus),
-html.buio {
+html.scuro {
   --sfondo: #121212;
   --nero: #f5f5f2;
   --grigio-testo: #a4a8b2;
@@ -165,18 +97,12 @@ html.buio {
 }
 
 /* Immagini nere in PNG: invertite per non sparire */
-html:has(.about-media:hover) :is(#rotating-icon img, #logo-site),
-html:has(.about-media:focus) :is(#rotating-icon img, #logo-site),
-html.buio :is(#rotating-icon img, #logo-site),
-html:is([data-tema="notte"], [data-tema="klein"], [data-tema="rosso"], [data-tema="bosco"]) :is(#rotating-icon img, #logo-site) {
+html.scuro :is(#rotating-icon img, #logo-site) {
   filter: invert(1);
 }
 
 /* Loghi clienti: il multiply sul nero li farebbe sparire */
-html:has(.about-media:hover) .logo-cella img,
-html:has(.about-media:focus) .logo-cella img,
-html.buio .logo-cella img,
-html:is([data-tema="notte"], [data-tema="klein"], [data-tema="rosso"], [data-tema="bosco"]) .logo-cella img {
+html.scuro .logo-cella img {
   mix-blend-mode: normal;
   filter: grayscale(1) invert(1);
 }
@@ -412,7 +338,7 @@ button,
 /* 5. Intro, chi sono, CTA, pagine di testo
    ---------------------------------------------------------- */
 
-/* Intro: titolo e sottotitolo a sinistra, toggle a destra centrato sul titolo */
+/* Intro: titolo a sinistra, toggle a destra centrato sul titolo */
 .intro-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -503,7 +429,7 @@ button,
 }
 
 #card-about {
-  margin-right: 15%;
+  margin: 0 8% 0 0;
   background: transparent !important;
   border-style: hidden;
   border-radius: var(--raggio);
@@ -518,11 +444,17 @@ button,
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
-/* Foto "Chi sono": al passaggio compare la foto live */
+/* Foto "Chi sono": ad arco; al passaggio compare la foto live */
 .about-media {
   position: relative;
   overflow: hidden;
-  border-radius: var(--raggio);
+  border-radius: 999px 999px var(--raggio) var(--raggio);
+}
+
+.about-media .card-img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .about-media .about-hover {
@@ -813,16 +745,15 @@ button,
 
 #clienti-griglia {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.5rem 2rem;
+  grid-template-columns: repeat(3, 150px);
+  gap: 2rem 2.5rem;
+  justify-content: start;
   align-items: center;
 }
 
-/* Ogni logo sta in un riquadro identico, allineato a sinistra:
-   i marchi compatti occupano tutta l'altezza, le scritte orizzontali tutta la larghezza */
 .logo-cella {
-  height: 64px;
-  width: 100%;
+  width: 150px;
+  height: 60px;
 }
 
 .logo-cella img {
@@ -949,7 +880,7 @@ button,
   transform: translateY(-5px);
 }
 
-/* Asterisco che cambia i colori */
+/* Asterisco: passa da chiaro a scuro */
 #rotating-icon {
   position: fixed;
   left: 15px;
@@ -970,14 +901,13 @@ button,
   cursor: pointer;
 }
 
-/* Cerchio con il colore del prossimo tema */
+/* Cerchio nel colore opposto allo sfondo: anticipa chiaro/scuro */
 #rotating-icon::before {
   content: "";
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  background: var(--prossimo, var(--accento));
-  box-shadow: 0 0 0 2px var(--nero);
+  background: var(--nero);
   transform: scale(0.6);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -996,14 +926,29 @@ button,
   height: 45px;
   transform: rotate(var(--giro, 0deg));
   transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: gira 12s linear infinite;
 }
 
+@keyframes gira {
+  to { rotate: 360deg; }
+}
 #rotating-icon:hover img,
 #rotating-icon:focus-visible img {
   transform: rotate(var(--giro, 0deg)) scale(0.88);
 }
 
-/* Etichetta "Cambia colori" */
+/* Sul cerchio l'asterisco prende il colore opposto, per restare visibile */
+#rotating-icon:hover img,
+#rotating-icon:focus-visible img {
+  filter: invert(1);
+}
+
+html.scuro #rotating-icon:hover img,
+html.scuro #rotating-icon:focus-visible img {
+  filter: none;
+}
+
+/* Etichetta "Modalità scura" / "Modalità chiara" */
 .tema-hint {
   position: absolute;
   left: calc(100% + 10px);
@@ -1490,6 +1435,11 @@ button,
     padding-right: 1%;
   }
 
+  /* <br> che servono solo su desktop */
+  .solo-desktop {
+    display: none;
+  }
+
   .col-lg-6 {
     padding-top: 10%;
   }
@@ -1588,7 +1538,7 @@ button,
     color: var(--su-accento);
   }
 
-  /* Intro: titolo, sottotitolo e toggle uno sotto l'altro */
+  /* Intro: titolo e toggle uno sotto l'altro */
   .intro-title {
     font-size: 14vw;
   }
@@ -1634,13 +1584,17 @@ button,
     padding-top: 0;
   }
 
-  /* Chi sono */
+  /* Chi sono: foto sopra, rettangolare e quadrata; testo staccato sotto */
   #heading {
-    padding: 0;
+    padding: 2.5rem 0 0;
   }
 
   #card-about {
-    margin-right: 0;
+    margin: 0;
+  }
+
+  .about-media {
+    border-radius: var(--raggio);
   }
 
   #card-about .card-img {
@@ -1721,10 +1675,19 @@ button,
 /* Telefono */
 @media (max-width: 575px) {
   #clienti-griglia {
-    gap: 2rem 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.75rem 1.25rem;
+    justify-items: start;
   }
 
   .logo-cella {
+    display: block;
+    width: 100%;
     height: 48px;
+  }
+
+  .logo-cella img {
+    object-position: left center;
+    transform-origin: left center;
   }
 }
