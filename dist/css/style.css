@@ -46,7 +46,7 @@
   --tracking-titoli: 0em;
 
   /* Colore d'accento: si cambia solo qui */
-  --accento: #69b4c2;
+  --accento: #5ace5c;
   --accento-chiaro: color-mix(in srgb, var(--accento) 15%, var(--sfondo));
   --su-accento: #121212;   /* testo sopra l'accento: resta scuro in tutti i casi */
 
@@ -429,6 +429,7 @@ button,
 }
 
 #card-about {
+  max-width: 480px;
   margin: 0 8% 0 0;
   background: transparent !important;
   border-style: hidden;
