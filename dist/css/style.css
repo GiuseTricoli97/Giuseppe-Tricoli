@@ -116,7 +116,11 @@ html.scuro .logo-cella img {
   mix-blend-mode: normal;
   filter: grayscale(1) invert(1);
 }
-
+.btn-secondario {
+  background-color: var(--grigio-chiaro);
+  border-color: var(--grigio-chiaro);
+  color: var(--nero);
+}
 
 /* 2. Base
    ---------------------------------------------------------- */
