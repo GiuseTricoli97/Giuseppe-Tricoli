@@ -52,7 +52,7 @@
   --tracking-titoli: 0em;
 
   /* Colore d'accento: si cambia solo qui */
-  --accento: #5ace5c;
+  --accento: #1dec20;
   --accento-chiaro: color-mix(in srgb, var(--accento) 15%, var(--sfondo));
   --su-accento: #121212;   /* testo sopra l'accento: resta scuro in tutti i casi */
 
