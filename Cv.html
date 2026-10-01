@@ -47,7 +47,7 @@
     <!-- ===== INTESTAZIONE ===== -->
     <section class="container cv-head">
       <h6>Curriculum vitae</h6>
-      <h1 class="cv-title"><b>Giuseppe Tricoli</b></h1>
+      <h1 class="cv-title">Giuseppe Tricoli</h1>
       <p class="cv-intro">
         Grafico e web developer a Torino. Progetto identità visive, manifesti e contenuti social,
         e realizzo siti WordPress e WooCommerce dalla grafica alla messa online. Dal 2023 lavoro con
@@ -71,7 +71,7 @@
               <li>Città <span>Torino</span></li>
             </ul>
           </div>
-
+<div id="puntatore" aria-hidden="true"><span></span></div>
           <div class="cv-blocco">
             <h6 class="cv-label">Competenze</h6>
 
@@ -243,6 +243,46 @@
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="dist/js/tema.js"></script>
+    <script src="dist/js/tema.js"></script> <!-- Puntatore: pallino verde che segue il mouse -->
+    <script>
+      (function () {
+        var p = document.getElementById("puntatore");
+        if (!p || !matchMedia("(hover: hover)").matches) return;
+
+        var x = innerWidth / 2, y = innerHeight / 2;
+        var px = x, py = y;
+        var verificato = false;
+
+        addEventListener("mousemove", function (e) {
+          x = e.clientX;
+          y = e.clientY;
+          p.classList.add("visibile");
+
+          // Nasconde il cursore di sistema solo se il pallino esiste davvero
+          if (!verificato) {
+            verificato = true;
+            if (p.getBoundingClientRect().width > 0) {
+              document.documentElement.classList.add("puntatore-attivo");
+            }
+          }
+        });
+
+        document.addEventListener("mouseleave", function () {
+          p.classList.remove("visibile");
+        });
+
+        document.addEventListener("mouseover", function (e) {
+          p.classList.toggle("su-link", !!e.target.closest("a, button, label, .about-media"));
+          p.classList.toggle("nascosto", !!e.target.closest("input, textarea"));
+        });
+
+        (function frame() {
+          px += (x - px) * 0.2;   // più basso = più lento
+          py += (y - py) * 0.2;
+          p.style.transform = "translate(" + px + "px," + py + "px)";
+          requestAnimationFrame(frame);
+        })();
+      })();
+    </script>
   </body>
 </html>

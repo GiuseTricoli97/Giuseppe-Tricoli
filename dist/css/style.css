@@ -10,7 +10,7 @@
    8. Footer, asterisco, colophon
    9. Contatti e form
    10. Pagina CV
-   11. Utility e animazioni
+   11. Utility, animazioni e puntatore
    12. Responsive
    ========================================================== */
 
@@ -33,14 +33,16 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Silk Serif: versione TRIAL, serve la licenza web prima di lasciarla online */
 @font-face {
   font-family: "Silk Serif";
   src: url("../../font/SilkSerif-TRIAL-RegularItalic-BF6740066e0d112.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-
 }
+
 :root {
   --font-titoli: "Artico ExtraCond", sans-serif;
   --font-testo: "Inter", sans-serif;
@@ -106,21 +108,20 @@ html.scuro {
 html.scuro :is(#rotating-icon img, #logo-site) {
   filter: invert(1);
 }
-.silk {
-  font-family: "Silk Serif", serif;
-  font-weight: 400;
-    letter-spacing: -0.09em;
-}
+
 /* Loghi clienti: il multiply sul nero li farebbe sparire */
 html.scuro .logo-cella img {
   mix-blend-mode: normal;
   filter: grayscale(1) invert(1);
 }
-.btn-secondario {
-  background-color: var(--grigio-chiaro);
-  border-color: var(--grigio-chiaro);
-  color: var(--nero);
+
+/* Parole in Silk Serif (titolo e CTA) */
+.silk {
+  font-family: "Silk Serif", serif;
+  font-weight: 400;
+  letter-spacing: -0.09em;
 }
+
 
 /* 2. Base
    ---------------------------------------------------------- */
@@ -338,6 +339,13 @@ button,
   color: var(--nero);
 }
 
+/* Bottone secondario (portfolio PDF): grigio come "Scrivimi" */
+.btn-secondario {
+  background-color: var(--grigio-chiaro);
+  border-color: var(--grigio-chiaro);
+  color: var(--nero);
+}
+
 /* Link-bottone senza sfondo */
 .cta {
   margin: 0;
@@ -387,6 +395,44 @@ button,
 .intro-title .code-burst {
   position: relative;
   white-space: nowrap;
+}
+
+/* Titoli: le parole salgono da sotto una maschera, una dopo l'altra.
+   Il titolo della home parte al caricamento; i titoli con .rivela partono
+   quando entrano nello schermo (classe .in-vista aggiunta dallo script). */
+.parola {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* margine dentro la maschera per non tagliare accenti, code e corsivi */
+  padding: 0.12em 0.1em 0.18em;
+  margin: -0.12em -0.1em -0.18em;
+}
+
+.parola > span {
+  display: inline-block;
+  transform: translateY(130%);
+  animation: sale 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+  animation-delay: calc(0.1s + var(--i, 0) * 0.09s);
+}
+
+html.js .rivela .parola > span {
+  animation-play-state: paused;
+}
+
+html.js .rivela.in-vista .parola > span {
+  animation-play-state: running;
+}
+
+@keyframes sale {
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parola > span {
+    animation: none;
+    transform: none;
+  }
 }
 
 .intro-sub {
@@ -626,6 +672,7 @@ button,
   font-weight: 600;
 }
 
+/* Il titolo sta dentro un link, che forza Inter: qui si rimette il font dei titoli */
 .card-title {
   font-family: var(--font-titoli) !important;
   font-size: 2rem;
@@ -948,6 +995,7 @@ button,
 @keyframes gira {
   to { rotate: 360deg; }
 }
+
 #rotating-icon:hover img,
 #rotating-icon:focus-visible img {
   transform: rotate(var(--giro, 0deg)) scale(0.88);
@@ -1381,7 +1429,7 @@ html.scuro #rotating-icon:focus-visible img {
 }
 
 
-/* 11. Utility e animazioni
+/* 11. Utility, animazioni e puntatore
    ---------------------------------------------------------- */
 
 .float-hover {
@@ -1415,6 +1463,61 @@ html.scuro #rotating-icon:focus-visible img {
   0%   { transform: scale(1);   opacity: 1; }
   50%  { transform: scale(1.6); opacity: 0.4; }
   100% { transform: scale(1);   opacity: 1; }
+}
+
+/* Puntatore: pallino verde che segue il mouse (solo dispositivi con mouse) */
+#puntatore {
+  display: none;
+}
+
+@media (hover: hover) {
+  /* Contenitore senza dimensioni: lo script lo sposta, lo zoom sta nel pallino */
+  #puntatore {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  #puntatore.visibile { opacity: 1; }
+  #puntatore.nascosto { opacity: 0; }
+
+  #puntatore span {
+    position: absolute;
+    top: -9px;
+    left: -9px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accento);
+    border-radius: 50%;
+    background: var(--accento);
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1),
+                background-color 0.3s ease;
+  }
+
+  /* Sopra link, bottoni e foto: diventa un anello */
+  #puntatore.su-link span {
+    transform: scale(2.6);
+    background: transparent;
+  }
+
+  /* Il cursore di sistema sparisce solo quando lo script ha verificato che il pallino funziona */
+  html.puntatore-attivo,
+  html.puntatore-attivo * {
+    cursor: none !important;
+  }
+
+  /* Nei campi di testo resta la barretta di scrittura */
+  html.puntatore-attivo input,
+  html.puntatore-attivo textarea {
+    cursor: text !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
