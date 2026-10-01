@@ -627,8 +627,9 @@ button,
 }
 
 .card-title {
-  font-size: 1.5rem;
-  line-height: 1.1;
+  font-family: var(--font-titoli) !important;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .card-text {
