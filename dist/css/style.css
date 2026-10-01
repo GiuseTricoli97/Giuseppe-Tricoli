@@ -808,15 +808,14 @@ html.js .rivela.in-vista .parola > span {
 
 #clienti-griglia {
   display: grid;
-  grid-template-columns: repeat(3, 150px);
-  gap: 2rem 2.5rem;
-  justify-content: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 2rem;
   align-items: center;
 }
 
 .logo-cella {
-  width: 150px;
-  height: 60px;
+  width: 100%;
+  height: 84px;
 }
 
 .logo-cella img {
@@ -1800,11 +1799,8 @@ html.scuro #rotating-icon:focus-visible img {
   }
 
   .logo-cella {
-    display: block;
-    width: 100%;
-    height: 48px;
+    height: 60px;
   }
-
   .logo-cella img {
     object-position: left center;
     transform-origin: left center;
